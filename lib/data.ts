@@ -212,7 +212,7 @@ export const caseStudies: CaseStudyData[] = [
     ],
     links: {
       // live: "https://tasmanstarseafood.com.au", // confirm before adding
-      github: "https://github.com/anshumaansaraf",
+      github: "https://github.com/Ansh0928",
     },
   },
 ];
@@ -237,10 +237,10 @@ export const projects: ProjectData[] = [
       "Sister is a physiotherapist. Australian healthcare takes too long, especially in rural Gold Coast aged-care areas. Built a multi-agent debate framework: 8 AI residents argue, supervising agent synthesizes, doctors get structured report on their portal. Applied to Alexa Lumina Health — rejected. Discovered Heidi doing something similar, scraped their approach, iterated, redesigned.",
     techTags: ["Next.js", "LangChain", "Ollama", "Docker", "shadcn/ui"],
     links: {
-      github: "https://github.com/anshumaansaraf/medicrew",
+      live: "https://medicrew.vercel.app/",
+      github: "https://github.com/Ansh0928/medicrew",
     },
-    image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80",
+    image: "/images/projects/medicrew.png",
   },
   {
     id: "ambassador",
@@ -256,10 +256,10 @@ export const projects: ProjectData[] = [
       "Geospatial maps",
     ],
     links: {
-      github: "https://github.com/anshumaansaraf/ambassador",
+      live: "https://ambassador-jade.vercel.app/",
+      github: "https://github.com/Ansh0928/ambassador",
     },
-    image:
-      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80",
+    image: "/images/projects/ambassador.png",
   },
 ];
 
@@ -489,8 +489,8 @@ export const beliefs: Belief[] = [
 // ── CONTACT ──────────────────────────────────────────────────────────────────
 export const contact = {
   email: "anshumaansaraf24@gmail.com",
-  github: "https://github.com/anshumaansaraf",
-  linkedin: "https://www.linkedin.com/in/anshumaansaraf",
+  github: "https://github.com/Ansh0928",
+  linkedin: "https://www.linkedin.com/in/anshumaan-saraf/",
   resume: "/Resume_Anshumaan_Saraf.pdf",
 };
 
