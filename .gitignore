@@ -5,6 +5,9 @@ out/
 # Dependencies
 node_modules/
 
+# Bun
+.bun/
+
 # Build outputs
 *.tsbuildinfo
 next-env.d.ts
