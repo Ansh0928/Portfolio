@@ -23,15 +23,14 @@ test.describe("Portfolio — critical path", () => {
   });
 
   test("work section has case study", async ({ page }) => {
-    await page.getByRole("link", { name: /View Work/i }).click();
-    const workSection = page.locator("#work");
+    await page.goto("/work");
     await expect(
-      workSection.getByRole("heading", { name: "Tasman Star Seafood" }),
+      page.getByRole("heading", { name: "Tasman Star Seafood" }),
     ).toBeVisible();
   });
 
   test("contact section is reachable", async ({ page }) => {
-    await page.getByRole("link", { name: /Let.s Talk/i }).click();
+    await page.goto("/contact");
     await expect(
       page.getByText("Got a problem that costs time or money?"),
     ).toBeVisible();

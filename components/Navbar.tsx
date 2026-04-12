@@ -4,11 +4,11 @@ import { useEffect, useState, useRef } from "react";
 import { SlideTabs } from "@/components/ui/slide-tabs";
 
 const navLinks = [
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Beliefs", href: "/beliefs#beliefs" },
+  { label: "Work", href: "/work" },
+  { label: "About", href: "/about" },
+  { label: "Beliefs", href: "/beliefs" },
   { label: "AI", href: "/beliefs#ai" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {

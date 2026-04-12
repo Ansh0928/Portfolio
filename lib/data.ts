@@ -31,6 +31,17 @@ export type QuadrantItem = {
   content: string;
 };
 
+export type CaseStudyBlock =
+  | { type: "text"; heading: string; body: string }
+  | { type: "bullets"; heading: string; items: string[] }
+  | { type: "quote"; text: string; attribution?: string }
+  | {
+      type: "timeline";
+      heading: string;
+      steps: { label: string; detail: string }[];
+    }
+  | { type: "callout"; heading: string; body: string };
+
 export type CaseStudyData = {
   id: string;
   title: string;
@@ -38,6 +49,8 @@ export type CaseStudyData = {
   role: string;
   metrics: { label: string; value: string }[];
   quadrants: QuadrantItem[];
+  // Rich modal narrative
+  story: CaseStudyBlock[];
   pipelineTags: string[];
   techTags: string[];
   links: { live?: string; github?: string };
@@ -74,6 +87,109 @@ export const caseStudies: CaseStudyData[] = [
         label: "The Hard Parts",
         content:
           "No production experience. Learned by talking to IBM, Amazon & CrowdStrike engineers on the bus. Navigated Australian privacy law (ACL, Privacy Act, PCI DSS), human resistance to change, and my own tendency to ship fast without documenting.",
+      },
+    ],
+    story: [
+      {
+        type: "text",
+        heading: "The Company",
+        body: "Tasman Star Seafood is Queensland's #1 seafood company. They run a fishing fleet, two retail stores, a wholesale operation, and their own transport. A real, multi-arm business — the kind that usually has a full tech team behind it. They had none.",
+      },
+      {
+        type: "quote",
+        text: "This website doesn't matter if you have no revenue from it.",
+        attribution:
+          "What I said in the interview — after building their site before walking in",
+      },
+      {
+        type: "text",
+        heading: "How I Got In",
+        body: "I found the company, saw the gap, and built a new website before reaching out. Not as a demo — as a statement. I wanted them to see that I wasn't pitching effort, I was delivering results. I walked in with the work already done. That reframing changed the whole conversation from 'can you help us?' to 'when can you start?'",
+      },
+      {
+        type: "text",
+        heading: "What I Found",
+        body: "Once I was inside, the real problems became clear. They were paying Shopify and Fresho a combined $26k+/year for tools that didn't talk to each other. Inventory was tracked in spreadsheets. Wholesale customers had no portal — they called or texted to order. Delivery drivers had no system. There was no unified view of the business at all.",
+      },
+      {
+        type: "bullets",
+        heading: "The Core Problems",
+        items: [
+          "Shopify + Fresho: $26k+/yr for disconnected SaaS tools",
+          "No inventory management — spreadsheets and memory",
+          "Wholesale ordering via phone/text — no portal, no history",
+          "Delivery drivers carrying paper dockets — no verification",
+          "Transport bookings handled manually by staff",
+          "No data on what was selling, what was wasted, or what to stock",
+        ],
+      },
+      {
+        type: "text",
+        heading: "My Approach",
+        body: "I didn't start with code. I spent the first two weeks just watching — how orders came in, how stock moved, what the staff actually did vs. what the process was supposed to be. The real workflow is never what's written down. Once I understood the system, I mapped every tool to either eliminate, replace, or automate. Then I started building in order of revenue impact.",
+      },
+      {
+        type: "timeline",
+        heading: "How It Unfolded",
+        steps: [
+          {
+            label: "Week 1–2: Observation",
+            detail:
+              "Embedded with the team. Mapped every workflow — retail, wholesale, transport, inventory. Asked why, not what.",
+          },
+          {
+            label: "Week 3–4: E-commerce launch",
+            detail:
+              "Replaced Shopify with a custom Next.js storefront. Dynamic pricing by product type. Went live. $10k in revenue in 5 days.",
+          },
+          {
+            label: "Month 2: RBAC + Wholesale portal",
+            detail:
+              "Built role-based access: super admin, admin, staff, wholesale customer. Wholesale buyers now self-serve — no more phone orders.",
+          },
+          {
+            label: "Month 3: Inventory system",
+            detail:
+              "Replaced the spreadsheet. Real-time stock levels, low-stock alerts, purchase order tracking. Staff trained in one session.",
+          },
+          {
+            label: "Month 4: iOS delivery app",
+            detail:
+              "Swift app for drivers. Digital dockets, photo verification on delivery, signature capture. Paper gone.",
+          },
+          {
+            label: "Month 5+: AI stock pipeline",
+            detail:
+              "LangChain pipeline that reads sales history, seasonal patterns, and weather data to forecast what to order and when.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        heading: "The Make vs. Buy Decision",
+        body: "The entire premise of this engagement was a make-vs-buy call. I could have recommended better SaaS tools. But after mapping the workflows, I realised no single tool would fit — and combining tools would still leave gaps. Custom was the right call here, not because I wanted to build, but because the math was clear: $26k/yr saved, full ownership, and a system that fits exactly how they operate.",
+      },
+      {
+        type: "bullets",
+        heading: "The Hard Parts",
+        items: [
+          "This was my first production role — no senior to ask, no runway for mistakes",
+          "I learned by cold-messaging IBM, Amazon, and CrowdStrike engineers I met on the bus",
+          "Australian privacy law: ACL, Privacy Act 1988, PCI DSS — all had to be right",
+          "Human resistance was the real obstacle — not the code",
+          "My own instinct to ship fast without documenting burned me twice",
+          "Had to learn when to ask for help vs. when to trust myself",
+        ],
+      },
+      {
+        type: "text",
+        heading: "What I'd Do Differently",
+        body: "Document as you go, not after. I shipped fast and caught up on documentation later — twice that caused real confusion when onboarding staff. I'd also have built the wholesale portal earlier. The number of phone orders the team was handling was the biggest daily pain point, and I underestimated it initially because it wasn't on any system — it was just noise I had to notice.",
+      },
+      {
+        type: "callout",
+        heading: "The Outcome",
+        body: "$26k+/yr eliminated in SaaS costs. $10k in e-commerce revenue in the first 5 days. $300k+ in total revenue now flowing through the platform. A business that used to run on phone calls and spreadsheets now runs on a single system built for exactly how they work.",
       },
     ],
     pipelineTags: [
