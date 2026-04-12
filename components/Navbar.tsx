@@ -6,7 +6,7 @@ import { SlideTabs } from "@/components/ui/slide-tabs";
 const navLinks = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
-  { label: "AI", href: "#ai" },
+  { label: "Beliefs", href: "/beliefs" },
   { label: "Contact", href: "#contact" },
 ];
 
