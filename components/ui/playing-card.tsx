@@ -1,5 +1,11 @@
 "use client";
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useMemo,
+} from "react";
 import Image from "next/image";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -304,7 +310,8 @@ function useDynamicTextLayout(
   componentId: string,
 ) {
   const [textSize, setTextSize] = useState(maxTextSize);
-  const [letterSpacing, setLetterSpacing] = useState(manualLetterSpacing ?? 0);
+  const [measuredLetterSpacing, setMeasuredLetterSpacing] = useState(0);
+  const letterSpacing = manualLetterSpacing ?? measuredLetterSpacing;
 
   useEffect(() => {
     const updateTextSize = () => {
@@ -320,25 +327,25 @@ function useDynamicTextLayout(
     const resizeObserver = new ResizeObserver(() =>
       setTimeout(updateTextSize, 500),
     );
-    if (containerRef.current) resizeObserver.observe(containerRef.current);
+    const el = containerRef.current;
+    if (el) resizeObserver.observe(el);
     updateTextSize();
     return () => {
-      if (containerRef.current) resizeObserver.unobserve(containerRef.current);
+      if (el) resizeObserver.unobserve(el);
     };
   }, [minWidth, maxWidth, minTextSize, maxTextSize, containerRef]);
 
-  useEffect(() => {
-    if (manualLetterSpacing !== undefined) {
-      setLetterSpacing(manualLetterSpacing);
-      return;
-    }
+  useLayoutEffect(() => {
+    if (manualLetterSpacing !== undefined) return;
     const textElement = containerRef.current?.querySelector(
       `#${componentId}-text`,
     );
     if (!textElement) return;
     const letterHeight =
       (textElement as HTMLElement).clientHeight / textArray.length;
-    setLetterSpacing(letterHeight);
+    // DOM measurement requires setState after layout — unavoidable pattern
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMeasuredLetterSpacing(letterHeight);
   }, [textArray, textSize, manualLetterSpacing, componentId, containerRef]);
 
   return { textSize, letterSpacing };

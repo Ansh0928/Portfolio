@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SlideTabs } from "@/components/ui/slide-tabs";
 
@@ -43,13 +44,13 @@ export function Navbar() {
     >
       <div className="bg-[#0d1117]/90 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <a
+          <Link
             href="/"
             className="font-mono text-sm text-[#3fb950] tracking-widest hover:opacity-80 transition-opacity"
             onClick={handleNavClick}
           >
             ANSHUMAAN SARAF
-          </a>
+          </Link>
 
           <div className="hidden md:block">
             <SlideTabs tabs={navLinks} activeIndex={activeIndex} />

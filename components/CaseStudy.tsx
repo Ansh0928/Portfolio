@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   type CaseStudyData,
   type CaseStudyBlock,
@@ -120,7 +121,9 @@ function ImageBlock({
 }) {
   return (
     <div className="rounded-xl overflow-hidden border border-white/10">
-      <img src={block.src} alt={block.alt} className="w-full object-cover" />
+      <div className="relative w-full aspect-video">
+        <Image src={block.src} alt={block.alt} fill className="object-cover" />
+      </div>
       {block.caption && (
         <p className="text-xs font-mono text-[#8b949e] px-4 py-2 bg-[#161b22]">
           {block.caption}

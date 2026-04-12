@@ -1,5 +1,11 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useLayoutEffect,
+} from "react";
 import Image from "next/image";
 import { X, ExternalLink } from "lucide-react";
 
@@ -506,6 +512,14 @@ export function CredentialCards() {
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
+  const closeModal = useCallback(() => {
+    setIsAnimatingOut(true);
+    setTimeout(() => {
+      setActiveCard(null);
+      setIsAnimatingOut(false);
+    }, 280);
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = activeCard ? "hidden" : "";
     return () => {
@@ -519,16 +533,7 @@ export function CredentialCards() {
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeCard]);
-
-  const closeModal = () => {
-    setIsAnimatingOut(true);
-    setTimeout(() => {
-      setActiveCard(null);
-      setIsAnimatingOut(false);
-    }, 280);
-  };
+  }, [activeCard, closeModal]);
 
   const active = credentials.find((c) => c.id === activeCard);
 

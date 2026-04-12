@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { BookOpen, Clock } from "lucide-react";
@@ -104,11 +105,12 @@ export function GlassBlogCard({
           <div className="flex items-center justify-between border-t border-white/5 pt-4">
             <div className="flex items-center gap-2">
               {/* Avatar */}
-              <div className="h-8 w-8 overflow-hidden rounded-full border border-white/10">
-                <img
+              <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/10">
+                <Image
                   src={author.avatar}
                   alt={author.name}
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
               <div className="flex flex-col text-xs font-mono">

@@ -80,7 +80,7 @@ export function Experience() {
         Experience
       </h2>
       <p className="text-[#e6edf3] font-mono text-2xl font-semibold mb-10">
-        Where I&apos;ve worked
+        Embedded at
       </p>
 
       <div>

@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { heroScramblePhrases, heroSubheadline, contact } from "@/lib/data";
+import { heroScramblePhrases, contact } from "@/lib/data";
 import { TextScramble } from "@/components/ui/TextScramble";
 import { Mail, Pause, Play } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
@@ -48,54 +48,44 @@ export function Hero() {
       </button>
 
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-        {/* Status badge */}
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <span className="inline-block w-2 h-2 rounded-full bg-[#3fb950] animate-pulse" />
-          <span className="font-mono text-xs tracking-widest text-[#3fb950] uppercase">
-            Available · contract &amp; part-time
-          </span>
-        </div>
-
         <h1 className="font-mono text-4xl sm:text-5xl md:text-6xl font-bold text-[#e6edf3] tracking-tight mb-3">
           ANSHUMAAN SARAF
         </h1>
 
-        <p className="font-mono text-xl sm:text-2xl md:text-3xl font-semibold text-[#3fb950] tracking-wide mb-2 min-h-[1.4em]">
+        <p className="font-mono text-xl sm:text-2xl md:text-3xl font-semibold text-[#3fb950] tracking-wide mb-4 min-h-[1.4em]">
           <TextScramble phrases={heroScramblePhrases} />
         </p>
 
-        <p className="text-xs text-[#8b949e] font-mono mb-6 tracking-wide">
-          (I embed with your business and build the system that solves the
-          problem)
+        <p className="text-sm text-[#484f58] font-mono mb-10 tracking-wide">
+          {"// embed · understand · build · ship"}
         </p>
 
-        <p className="text-[#8b949e] text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-          {heroSubheadline}
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col items-center gap-5 mb-10">
           <a
             href="/work"
-            className="px-6 py-3 bg-[#3fb950] text-[#0d1117] font-mono text-sm font-semibold tracking-wide rounded-lg hover:bg-[#3fb950]/90 transition-colors"
+            className="px-8 py-3 bg-[#3fb950] text-[#0d1117] font-mono text-sm font-semibold tracking-wide rounded-lg hover:bg-[#3fb950]/90 transition-colors"
           >
             View Work ↓
           </a>
-          <a
-            href="/Resume_Anshumaan_Saraf.pdf"
-            download
-            className="px-6 py-3 border border-[#3fb950]/40 text-[#3fb950] font-mono text-sm font-semibold tracking-wide rounded-lg hover:border-[#3fb950] hover:bg-[#3fb950]/10 transition-all"
-          >
-            Download CV ↓
-          </a>
-          <a
-            href="/contact"
-            className="px-6 py-3 border border-[#484f58]/60 text-[#8b949e] font-mono text-sm font-semibold tracking-wide rounded-lg hover:border-[#8b949e] hover:text-[#e6edf3] transition-all"
-          >
-            Let&apos;s Talk →
-          </a>
+          <div className="flex items-center gap-6 font-mono text-xs text-[#484f58]">
+            <a
+              href="/Resume_Anshumaan_Saraf.pdf"
+              download
+              className="hover:text-[#8b949e] transition-colors"
+            >
+              Download CV
+            </a>
+            <span aria-hidden="true">·</span>
+            <a
+              href="/contact"
+              className="hover:text-[#8b949e] transition-colors"
+            >
+              Let&apos;s Talk
+            </a>
+          </div>
         </div>
 
-        <div className="flex items-center justify-center gap-5 mt-6">
+        <div className="flex items-center justify-center gap-5">
           <a
             href={contact.linkedin}
             target="_blank"

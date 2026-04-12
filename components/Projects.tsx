@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { BookOpen, Clock } from "lucide-react";
 import { projects, type ProjectData } from "@/lib/data";
 import { MotionSection } from "@/components/ui/MotionSection";
 
@@ -128,6 +128,11 @@ export function Projects() {
 
   return (
     <>
+      <div className="pt-4 pb-2 border-t border-white/6">
+        <p className="font-mono text-xs tracking-[0.3em] text-[#484f58] uppercase">
+          Also shipped
+        </p>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         {projects.map((project, i) => (
           <MotionSection key={project.id} aria-label={`${project.id} project`}>
@@ -141,10 +146,11 @@ export function Projects() {
               {/* Image */}
               {project.image && (
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.id}
-                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
 
@@ -162,9 +168,8 @@ export function Projects() {
 
                   {/* Hover CTA */}
                   <div className="absolute inset-0 flex items-center justify-center bg-[#0d1117]/20 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="flex items-center gap-2 rounded-full bg-[#3fb950] px-6 py-2.5 text-sm font-mono font-medium text-[#0d1117] shadow-lg shadow-[#3fb950]/25">
-                      <BookOpen className="h-4 w-4" />
-                      View Project
+                    <span className="rounded-full bg-[#3fb950] px-6 py-2.5 text-sm font-mono font-medium text-[#0d1117] shadow-lg shadow-[#3fb950]/25">
+                      Read Case Study ↗
                     </span>
                   </div>
                 </div>
@@ -181,14 +186,10 @@ export function Projects() {
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-white/5 pt-4">
+                <div className="border-t border-white/5 pt-4">
                   <span className="rounded-full bg-[#58a6ff]/10 px-2.5 py-0.5 text-xs font-mono text-[#58a6ff] border border-[#58a6ff]/20">
                     {project.badge}
                   </span>
-                  <div className="flex items-center gap-1 text-xs font-mono text-[#8b949e]">
-                    <Clock className="h-3 w-3" />
-                    <span>{project.techTags.length} technologies</span>
-                  </div>
                 </div>
               </div>
             </motion.button>
