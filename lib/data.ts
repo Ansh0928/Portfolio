@@ -225,6 +225,7 @@ export type ProjectData = {
   story: string;
   techTags: string[];
   links: { live?: string; github: string };
+  image?: string;
 };
 
 export const projects: ProjectData[] = [
@@ -236,9 +237,10 @@ export const projects: ProjectData[] = [
       "Sister is a physiotherapist. Australian healthcare takes too long, especially in rural Gold Coast aged-care areas. Built a multi-agent debate framework: 8 AI residents argue, supervising agent synthesizes, doctors get structured report on their portal. Applied to Alexa Lumina Health — rejected. Discovered Heidi doing something similar, scraped their approach, iterated, redesigned.",
     techTags: ["Next.js", "LangChain", "Ollama", "Docker", "shadcn/ui"],
     links: {
-      // live: undefined, // TBD — show GitHub only until confirmed
       github: "https://github.com/anshumaansaraf/medicrew",
     },
+    image:
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80",
   },
   {
     id: "ambassador",
@@ -254,9 +256,10 @@ export const projects: ProjectData[] = [
       "Geospatial maps",
     ],
     links: {
-      // live: undefined, // TBD — show GitHub only until confirmed
       github: "https://github.com/anshumaansaraf/ambassador",
     },
+    image:
+      "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80",
   },
 ];
 

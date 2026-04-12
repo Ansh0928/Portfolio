@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { BookOpen, Clock } from "lucide-react";
 import { projects, type ProjectData } from "@/lib/data";
 import { MotionSection } from "@/components/ui/MotionSection";
 
@@ -127,65 +129,69 @@ export function Projects() {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        {projects.map((project) => (
+        {projects.map((project, i) => (
           <MotionSection key={project.id} aria-label={`${project.id} project`}>
-            <button
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
               onClick={() => setActiveProject(project)}
-              className="w-full h-full text-left bg-[#161b22] border border-white/10 rounded-xl overflow-hidden flex flex-col hover:border-[#58a6ff]/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(88,166,255,0.07)] group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#58a6ff]"
+              className="group relative w-full h-full text-left overflow-hidden rounded-2xl border border-white/10 bg-[#161b22]/60 backdrop-blur-md transition-all duration-300 hover:border-[#3fb950]/40 hover:shadow-xl hover:shadow-[#3fb950]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3fb950]"
             >
-              <div className="p-6 flex-1">
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <h3 className="text-lg font-mono font-bold text-[#e6edf3] capitalize group-hover:text-white transition-colors">
+              {/* Image */}
+              {project.image && (
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.id}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117]/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
+
+                  {/* Tags */}
+                  <div className="absolute bottom-3 left-3 flex gap-2">
+                    {project.techTags.slice(0, 2).map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full bg-[#0d1117]/60 px-2.5 py-0.5 text-xs font-mono text-[#8b949e] backdrop-blur-sm border border-white/10"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Hover CTA */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-[#0d1117]/20 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="flex items-center gap-2 rounded-full bg-[#3fb950] px-6 py-2.5 text-sm font-mono font-medium text-[#0d1117] shadow-lg shadow-[#3fb950]/25">
+                      <BookOpen className="h-4 w-4" />
+                      View Project
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Content */}
+              <div className="flex flex-col gap-4 p-5">
+                <div className="space-y-2">
+                  <h3 className="text-lg font-mono font-semibold capitalize text-[#e6edf3] transition-colors group-hover:text-[#3fb950]">
                     {project.id}
                   </h3>
-                  {/* Icon hint */}
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className="text-[#8b949e] group-hover:text-[#58a6ff] transition-colors shrink-0 mt-0.5"
-                  >
-                    <path d="M8 1h7v7M15 1L7 9M6 3H2a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V9" />
-                  </svg>
+                  <p className="line-clamp-2 text-sm font-mono text-[#8b949e]">
+                    {project.tagline}
+                  </p>
                 </div>
 
-                <span className="inline-block px-2 py-0.5 text-xs font-mono bg-[#58a6ff]/10 text-[#58a6ff] border border-[#58a6ff]/20 rounded-full mb-3">
-                  {project.badge}
-                </span>
-
-                <p className="text-[#e6edf3] text-sm font-medium mb-3 italic line-clamp-2">
-                  &ldquo;{project.tagline}&rdquo;
-                </p>
-
-                <p className="text-[#8b949e] text-sm leading-relaxed line-clamp-3">
-                  {project.story}
-                </p>
-              </div>
-
-              <div className="border-t border-white/10 px-6 py-4 flex items-center justify-between">
-                <div className="flex flex-wrap gap-2">
-                  {project.techTags.slice(0, 3).map((t) => (
-                    <span
-                      key={t}
-                      className="px-2 py-0.5 text-xs font-mono bg-white/5 text-[#8b949e] rounded-full border border-white/10"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                  {project.techTags.length > 3 && (
-                    <span className="text-xs font-mono text-[#8b949e]">
-                      +{project.techTags.length - 3}
-                    </span>
-                  )}
+                <div className="flex items-center justify-between border-t border-white/5 pt-4">
+                  <span className="rounded-full bg-[#58a6ff]/10 px-2.5 py-0.5 text-xs font-mono text-[#58a6ff] border border-[#58a6ff]/20">
+                    {project.badge}
+                  </span>
+                  <div className="flex items-center gap-1 text-xs font-mono text-[#8b949e]">
+                    <Clock className="h-3 w-3" />
+                    <span>{project.techTags.length} technologies</span>
+                  </div>
                 </div>
-                <span className="text-sm font-mono text-[#58a6ff] flex items-center gap-1 group-hover:gap-2 transition-all shrink-0">
-                  Read more <span aria-hidden>→</span>
-                </span>
               </div>
-            </button>
+            </motion.button>
           </MotionSection>
         ))}
       </div>
