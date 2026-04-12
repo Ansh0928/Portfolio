@@ -24,15 +24,15 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/60 via-transparent to-[#0d1117]/80" />
 
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-        <p className="font-mono text-sm tracking-[0.3em] text-[#3fb950] mb-4 uppercase">
+        <h1 className="font-mono text-4xl sm:text-5xl md:text-6xl font-bold text-[#e6edf3] tracking-tight mb-3">
           ANSHUMAAN SARAF
-        </p>
-
-        <h1 className="font-mono text-3xl sm:text-4xl md:text-5xl font-bold text-[#e6edf3] tracking-tight mb-2 min-h-[1.2em]">
-          <TextScramble phrases={heroScramblePhrases} />
         </h1>
 
-        <p className="text-xs text-[#484f58] font-mono mb-6 tracking-wide">
+        <p className="font-mono text-xl sm:text-2xl md:text-3xl font-semibold text-[#3fb950] tracking-wide mb-2 min-h-[1.4em]">
+          <TextScramble phrases={heroScramblePhrases} />
+        </p>
+
+        <p className="text-xs text-[#8b949e] font-mono mb-6 tracking-wide">
           (I embed with your business and build the system that solves the
           problem)
         </p>
