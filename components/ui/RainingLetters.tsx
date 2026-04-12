@@ -3,90 +3,118 @@
 import { useEffect, useRef } from "react";
 
 const CHARS =
-  "アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const FONT_SIZE = 14;
-const COLOR = "#3fb950";
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコ0123456789!@#$%^&*()[]{}";
+const CHAR_COUNT = 150;
+const ACTIVE_COLOR = "#3fb950";
+const INACTIVE_COLOR = "#21262d";
+const ACTIVE_SHADOW =
+  "0 0 8px rgba(63,185,80,0.9), 0 0 20px rgba(63,185,80,0.4)";
 
-export function RainingLetters() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafId = useRef<number>(0);
+function rand(str: string) {
+  return str[Math.floor(Math.random() * str.length)];
+}
+
+export function RainingLetters({ paused = false }: { paused?: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(paused);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    pausedRef.current = paused;
+  }, [paused]);
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize, { passive: true });
+    // Initialise character data
+    const data = Array.from({ length: CHAR_COUNT }, () => ({
+      char: rand(CHARS),
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      speed: 0.04 + Math.random() * 0.12,
+    }));
 
-    if (prefersReduced) {
-      ctx.fillStyle = "#0d1117";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      return () => window.removeEventListener("resize", resize);
-    }
+    // Create DOM spans once
+    const spans: HTMLSpanElement[] = data.map((d) => {
+      const el = document.createElement("span");
+      el.textContent = d.char;
+      Object.assign(el.style, {
+        position: "absolute",
+        fontFamily: "monospace",
+        fontSize: "1rem",
+        transform: "translate(-50%, -50%)",
+        left: `${d.x}%`,
+        top: `${d.y}%`,
+        color: INACTIVE_COLOR,
+        opacity: "0.65",
+        userSelect: "none",
+        pointerEvents: "none",
+        willChange: "top",
+        transition: "color 0.12s, text-shadow 0.12s",
+      });
+      container.appendChild(el);
+      return el;
+    });
 
-    const columns = Math.floor(canvas.width / FONT_SIZE);
-    const drops: number[] = Array(columns).fill(1);
-
-    const isMobile = (navigator.hardwareConcurrency ?? 8) <= 4;
-    let frameCount = 0;
-
-    const draw = () => {
-      frameCount++;
-      if (isMobile && frameCount % 2 !== 0) {
-        rafId.current = requestAnimationFrame(draw);
-        return;
+    // Flicker: swap active set every 60 ms
+    const activeSet = new Set<number>();
+    const flickerId = setInterval(() => {
+      if (pausedRef.current) return;
+      activeSet.forEach((i) => {
+        spans[i].style.color = INACTIVE_COLOR;
+        spans[i].style.textShadow = "none";
+        spans[i].style.opacity = "0.65";
+      });
+      activeSet.clear();
+      const count = 4 + Math.floor(Math.random() * 5);
+      for (let k = 0; k < count; k++) {
+        const idx = Math.floor(Math.random() * CHAR_COUNT);
+        activeSet.add(idx);
+        spans[idx].style.color = ACTIVE_COLOR;
+        spans[idx].style.textShadow = ACTIVE_SHADOW;
+        spans[idx].style.opacity = "1";
       }
+    }, 60);
 
-      ctx.fillStyle = "rgba(13, 17, 23, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = COLOR;
-      ctx.font = `${FONT_SIZE}px monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const char = CHARS[Math.floor(Math.random() * CHARS.length)];
-        ctx.fillText(char, i * FONT_SIZE, drops[i] * FONT_SIZE);
-        if (drops[i] * FONT_SIZE > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+    // RAF loop: move characters downward
+    let rafId = 0;
+    const tick = () => {
+      if (!pausedRef.current) {
+        for (let i = 0; i < CHAR_COUNT; i++) {
+          data[i].y += data[i].speed;
+          if (data[i].y >= 105) {
+            data[i].y = -5;
+            data[i].x = Math.random() * 100;
+            data[i].char = rand(CHARS);
+            spans[i].textContent = data[i].char;
+            spans[i].style.left = `${data[i].x}%`;
+          }
+          spans[i].style.top = `${data[i].y}%`;
         }
-        drops[i]++;
       }
-
-      rafId.current = requestAnimationFrame(draw);
+      rafId = requestAnimationFrame(tick);
     };
+    rafId = requestAnimationFrame(tick);
 
-    rafId.current = requestAnimationFrame(draw);
-
-    const handleVisibility = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(rafId.current);
-      } else {
-        rafId.current = requestAnimationFrame(draw);
-      }
+    // Pause when tab hidden
+    const onVisibility = () => {
+      if (document.hidden) cancelAnimationFrame(rafId);
+      else rafId = requestAnimationFrame(tick);
     };
-    document.addEventListener("visibilitychange", handleVisibility);
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
-      cancelAnimationFrame(rafId.current);
-      window.removeEventListener("resize", resize);
-      document.removeEventListener("visibilitychange", handleVisibility);
+      clearInterval(flickerId);
+      cancelAnimationFrame(rafId);
+      document.removeEventListener("visibilitychange", onVisibility);
+      spans.forEach((s) => s.remove());
     };
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
+    <div
+      ref={containerRef}
+      className="absolute inset-0 overflow-hidden"
       aria-hidden="true"
     />
   );

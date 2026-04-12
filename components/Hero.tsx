@@ -1,9 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useState } from "react";
 import { heroScramblePhrases, heroSubheadline, contact } from "@/lib/data";
 import { TextScramble } from "@/components/ui/TextScramble";
-import { Mail } from "lucide-react";
+import { Mail, Pause, Play } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
 
 const RainingLetters = dynamic(
@@ -15,21 +16,43 @@ const RainingLetters = dynamic(
 );
 
 export function Hero() {
+  const [paused, setPaused] = useState(false);
+
   return (
     <section
       id="hero"
       className="relative flex items-center justify-center min-h-screen overflow-hidden bg-[#0d1117]"
       aria-label="Hero"
     >
-      <RainingLetters />
+      <RainingLetters paused={paused} />
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/60 via-transparent to-[#0d1117]/80" />
 
+      {/* Pause / play button */}
+      <button
+        onClick={() => setPaused((p) => !p)}
+        className="absolute bottom-6 right-6 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded border border-white/10 text-[#484f58] hover:text-[#3fb950] hover:border-[#3fb950]/30 transition-all font-mono text-[10px] tracking-widest uppercase"
+        aria-label={paused ? "Resume animation" : "Pause animation"}
+      >
+        {paused ? (
+          <>
+            <Play size={10} />
+            play
+          </>
+        ) : (
+          <>
+            <Pause size={10} />
+            pause
+          </>
+        )}
+      </button>
+
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        {/* Status badge */}
         <div className="flex items-center justify-center gap-2 mb-4">
           <span className="inline-block w-2 h-2 rounded-full bg-[#3fb950] animate-pulse" />
           <span className="font-mono text-xs tracking-widest text-[#3fb950] uppercase">
-            Available for contract
+            Available · contract &amp; part-time
           </span>
         </div>
 

@@ -25,11 +25,22 @@ export function About() {
       className="max-w-5xl mx-auto px-6 py-20"
       aria-label="About"
     >
-      <h2 className="font-mono text-xs tracking-[0.3em] text-[#3fb950] uppercase mb-8">
+      <h2 className="font-mono text-xs tracking-[0.3em] text-[#3fb950] uppercase mb-10">
         About
       </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {/* Name + role */}
+      <div className="mb-10">
+        <h1 className="text-3xl font-bold text-[#e6edf3] leading-tight mb-1">
+          Anshumaan Saraf
+        </h1>
+        <p className="text-[#3fb950] font-mono text-sm">
+          Forward Deployed Engineer · Gold Coast, Australia
+        </p>
+      </div>
+
+      {/* Bio + Non-negotiables */}
+      <div className="max-w-2xl flex flex-col gap-8">
         <div className="space-y-4 text-[#8b949e] text-base leading-relaxed">
           <p>
             You&apos;ll find wins here. You&apos;ll also find rejections. And
@@ -48,11 +59,14 @@ export function About() {
           </p>
         </div>
 
-        <div className="font-mono text-sm space-y-6">
+        <div className="font-mono text-sm space-y-4">
+          <p className="text-[#484f58] text-xs tracking-widest uppercase">
+            Non-Negotiables
+          </p>
           {nonNegotiables.map((item) => (
             <div key={item.title}>
               <p className="text-[#3fb950]">→ {item.title}</p>
-              <p className="text-[#8b949e] mt-1 pl-4 leading-relaxed">
+              <p className="text-[#8b949e] mt-1 pl-4 leading-relaxed text-xs">
                 {item.description}
               </p>
             </div>

@@ -1,5 +1,4 @@
 import { Navbar } from "@/components/Navbar";
-import { UnderstandingAI } from "@/components/UnderstandingAI";
 import { Beliefs } from "@/components/Beliefs";
 
 export const metadata = {
@@ -13,7 +12,6 @@ export default function BeliefsPage() {
     <>
       <Navbar />
       <main className="pt-14">
-        <UnderstandingAI />
         <Beliefs />
       </main>
     </>
