@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { SlideTabs } from "@/components/ui/slide-tabs";
 
 const navLinks = [
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Beliefs", href: "/beliefs" },
-  { label: "AI", href: "/beliefs#ai" },
+  { label: "AI", href: "/ai" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -15,6 +16,11 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
+
+  const activeIndex = navLinks.findIndex(
+    (link) => pathname === link.href || pathname.startsWith(link.href + "/"),
+  );
 
   useEffect(() => {
     const handler = () => {
@@ -46,7 +52,7 @@ export function Navbar() {
           </a>
 
           <div className="hidden md:block">
-            <SlideTabs tabs={navLinks} />
+            <SlideTabs tabs={navLinks} activeIndex={activeIndex} />
           </div>
 
           <button

@@ -30,7 +30,7 @@ type CursorProps = {
   position: CursorPosition;
 };
 
-export function SlideTabs({ tabs, activeIndex = 0 }: SlideTabsProps) {
+export function SlideTabs({ tabs, activeIndex = -1 }: SlideTabsProps) {
   const [position, setPosition] = useState<CursorPosition>({
     left: 0,
     width: 0,
@@ -39,7 +39,16 @@ export function SlideTabs({ tabs, activeIndex = 0 }: SlideTabsProps) {
   const [selected, setSelected] = useState(activeIndex);
   const tabsRef = useRef<(HTMLLIElement | null)[]>([]);
 
+  // Sync selected to activeIndex whenever the route changes
   useEffect(() => {
+    setSelected(activeIndex);
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (selected < 0) {
+      setPosition((p) => ({ ...p, opacity: 0 }));
+      return;
+    }
     const selectedTab = tabsRef.current[selected];
     if (selectedTab) {
       const { width } = selectedTab.getBoundingClientRect();
@@ -50,6 +59,10 @@ export function SlideTabs({ tabs, activeIndex = 0 }: SlideTabsProps) {
   return (
     <ul
       onMouseLeave={() => {
+        if (selected < 0) {
+          setPosition((p) => ({ ...p, opacity: 0 }));
+          return;
+        }
         const selectedTab = tabsRef.current[selected];
         if (selectedTab) {
           const { width } = selectedTab.getBoundingClientRect();

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { meta, contact } from "@/lib/data";
+import { FloatingBar } from "@/components/FloatingBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function RootLayout({
       </head>
       <body className="bg-[#0d1117] text-[#e6edf3] antialiased">
         {children}
+        <FloatingBar />
       </body>
     </html>
   );

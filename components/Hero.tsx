@@ -1,8 +1,10 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { heroScramblePhrases, heroSubheadline } from "@/lib/data";
+import { heroScramblePhrases, heroSubheadline, contact } from "@/lib/data";
 import { TextScramble } from "@/components/ui/TextScramble";
+import { Mail } from "lucide-react";
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
 
 const RainingLetters = dynamic(
   () => import("@/components/ui/RainingLetters").then((m) => m.RainingLetters),
@@ -24,6 +26,13 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/60 via-transparent to-[#0d1117]/80" />
 
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <span className="inline-block w-2 h-2 rounded-full bg-[#3fb950] animate-pulse" />
+          <span className="font-mono text-xs tracking-widest text-[#3fb950] uppercase">
+            Available for contract
+          </span>
+        </div>
+
         <h1 className="font-mono text-4xl sm:text-5xl md:text-6xl font-bold text-[#e6edf3] tracking-tight mb-3">
           ANSHUMAAN SARAF
         </h1>
@@ -49,16 +58,47 @@ export function Hero() {
             View Work ↓
           </a>
           <a
-            href="/contact"
+            href="/Resume_Anshumaan_Saraf.pdf"
+            download
             className="px-6 py-3 border border-[#3fb950]/40 text-[#3fb950] font-mono text-sm font-semibold tracking-wide rounded-lg hover:border-[#3fb950] hover:bg-[#3fb950]/10 transition-all"
+          >
+            Download CV ↓
+          </a>
+          <a
+            href="/contact"
+            className="px-6 py-3 border border-[#484f58]/60 text-[#8b949e] font-mono text-sm font-semibold tracking-wide rounded-lg hover:border-[#8b949e] hover:text-[#e6edf3] transition-all"
           >
             Let&apos;s Talk →
           </a>
         </div>
-      </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#484f58] font-mono text-xs tracking-widest animate-bounce">
-        ↓ SCROLL
+        <div className="flex items-center justify-center gap-5 mt-6">
+          <a
+            href={contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-[#484f58] hover:text-[#3fb950] transition-colors"
+          >
+            <LinkedInIcon size={18} />
+          </a>
+          <a
+            href={contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-[#484f58] hover:text-[#3fb950] transition-colors"
+          >
+            <GitHubIcon size={18} />
+          </a>
+          <a
+            href={`mailto:${contact.email}`}
+            aria-label="Email"
+            className="text-[#484f58] hover:text-[#3fb950] transition-colors"
+          >
+            <Mail size={18} />
+          </a>
+        </div>
       </div>
     </section>
   );
