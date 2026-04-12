@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
+import { Barlow_Condensed } from "next/font/google";
 import { meta, contact } from "@/lib/data";
 import { FloatingBar } from "@/components/FloatingBar";
 import "./globals.css";
+
+const barlowCondensed = Barlow_Condensed({
+  weight: ["700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-barlow",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: meta.title,
@@ -51,7 +59,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-[#0d1117] text-[#e6edf3] antialiased">
+      <body
+        className={`${barlowCondensed.variable} bg-[#0d1117] text-[#e6edf3] antialiased`}
+      >
         {children}
         <FloatingBar />
       </body>
