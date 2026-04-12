@@ -22,3 +22,6 @@ Thumbs.db
 
 # Vercel
 .vercel
+.superpowers/
+test-results/
+playwright-report/
