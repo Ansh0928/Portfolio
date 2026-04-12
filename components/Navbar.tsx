@@ -1,16 +1,25 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { SlideTabs } from "@/components/ui/slide-tabs";
 
-const navLinks = [
+const mainLinks = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Beliefs", href: "/beliefs" },
   { label: "Contact", href: "#contact" },
 ];
 
+const beliefsLinks = [
+  { label: "Understanding AI", href: "#ai" },
+  { label: "What I Believe", href: "#beliefs" },
+];
+
 export function Navbar() {
+  const pathname = usePathname();
+  const isBeliefs = pathname === "/beliefs";
+  const navLinks = isBeliefs ? beliefsLinks : mainLinks;
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
@@ -37,7 +46,7 @@ export function Navbar() {
       <div className="bg-[#0d1117]/90 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <a
-            href="#"
+            href={isBeliefs ? "/" : "#"}
             className="font-mono text-sm text-[#3fb950] tracking-widest hover:opacity-80 transition-opacity"
             onClick={handleNavClick}
           >
