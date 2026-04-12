@@ -7,6 +7,7 @@ import { About } from "@/components/About";
 import { Experience } from "@/components/Experience";
 import { Achievements } from "@/components/Achievements";
 import { TechStack } from "@/components/TechStack";
+import { UnderstandingAI } from "@/components/UnderstandingAI";
 import { Beliefs } from "@/components/Beliefs";
 import { Contact } from "@/components/Contact";
 import { caseStudies } from "@/lib/data";
@@ -28,6 +29,7 @@ export default function Home() {
         <Experience />
         <Achievements />
         <TechStack />
+        <UnderstandingAI />
         <Beliefs />
         <Contact />
       </main>

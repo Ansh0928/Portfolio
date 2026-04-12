@@ -11,10 +11,10 @@
   --text-muted: #484f58;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Unlayered override — fixes Tailwind v4 margin-inline:auto vs @layer base conflict */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 html {
