@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anshumaan Saraf — Portfolio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #010409;
+        --surface: #0d1117;
+        --surface2: #161b22;
+        --border: #21262d;
+        --border2: #30363d;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --faint: #6e7681;
+        --green: #3fb950;
+        --blue: #58a6ff;
+        --orange: #f0883e;
+        --red: #f85149;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 56px;
+        background: rgba(1, 4, 9, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: monospace;
+        font-size: 14px;
+        color: var(--text);
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .nav-logo span {
+        color: var(--green);
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+      }
+      .nav-links a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-cta {
+        font-size: 12px;
+        font-weight: 600;
+        background: var(--green);
+        color: #0d1117;
+        padding: 6px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        padding: 80px 24px 60px;
+        background: #000;
+      }
+      .rain-bg {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        padding: 16px;
+        pointer-events: none;
+        opacity: 0.12;
+        font-family: monospace;
+        font-size: 14px;
+        color: var(--green);
+        overflow: hidden;
+        align-content: flex-start;
+      }
+      .hero-badge {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--green);
+        background: rgba(63, 185, 80, 0.1);
+        border: 1px solid rgba(63, 185, 80, 0.25);
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-title {
+        font-family: monospace;
+        font-size: clamp(28px, 5vw, 52px);
+        font-weight: 900;
+        letter-spacing: 3px;
+        color: var(--text);
+        position: relative;
+        z-index: 2;
+        line-height: 1.1;
+        margin-bottom: 8px;
+      }
+      .hero-title span {
+        color: var(--green);
+      }
+      .hero-name {
+        font-family: monospace;
+        font-size: clamp(14px, 2vw, 18px);
+        color: var(--muted);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-sub {
+        font-size: clamp(14px, 1.8vw, 16px);
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.7;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-sub strong {
+        color: var(--text);
+      }
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        position: relative;
+        z-index: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn-green {
+        background: var(--green);
+        color: #0d1117;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 10px 24px;
+        border-radius: 7px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 24px;
+        border-radius: 7px;
+        border: 1px solid var(--border2);
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        color: var(--faint);
+        letter-spacing: 2px;
+        z-index: 2;
+        animation: bounce 2s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+
+      /* ── SECTIONS ── */
+      section {
+        padding: 96px 40px;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .section-eye {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .section-h {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+      }
+      .section-sub {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 40px;
+        max-width: 520px;
+        line-height: 1.6;
+      }
+
+      /* ── ABOUT ── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .about-text p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.9;
+        margin-bottom: 12px;
+      }
+      .about-text p strong {
+        color: var(--text);
+      }
+      .about-text em {
+        color: var(--text);
+        font-style: italic;
+      }
+      .stats-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 24px;
+      }
+      .stat {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 8px;
+        padding: 12px 14px;
+      }
+      .stat .val {
+        font-size: 18px;
+        font-weight: 800;
+        font-family: monospace;
+        color: var(--green);
+      }
+      .stat .lbl {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .nn-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+      }
+      .nn-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 5px;
+      }
+      .nn-arrow {
+        color: var(--blue);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .nn-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .nn-desc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ── CASE STUDY ── */
+      .cs {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .cs-top {
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        padding: 24px 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .cs-badge {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        background: var(--green);
+        color: #0d1117;
+        padding: 2px 9px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        display: inline-block;
+      }
+      .cs-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .cs-org {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .cs-nums {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .cs-num {
+        text-align: center;
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        border-radius: 8px;
+        padding: 10px 18px;
+        min-width: 80px;
+      }
+      .cs-num .v {
+        font-size: 20px;
+        font-weight: 900;
+        font-family: monospace;
+      }
+      .cs-num .k {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .cs-body {
+        padding: 24px 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .cs-q h4 {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--blue);
+        margin-bottom: 8px;
+      }
+      .cs-q p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .cs-q p strong {
+        color: var(--text);
+      }
+      .cs-q em {
+        color: var(--text);
+        font-style: italic;
+      }
+      .pipeline {
+        padding: 0 28px 20px;
+      }
+      .pipeline h4 {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--blue);
+        margin-bottom: 10px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tag {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        color: var(--muted);
+        font-size: 11px;
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      .tag.hi {
+        color: var(--text);
+        border-color: rgba(88, 166, 255, 0.25);
+      }
+      .cs-links {
+        padding: 14px 28px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        gap: 10px;
+      }
+      .link-btn {
+        font-size: 11px;
+        color: var(--blue);
+        border: 1px solid var(--border2);
+        padding: 5px 14px;
+        border-radius: 5px;
+        background: transparent;
+        text-decoration: none;
+      }
+
+      /* ── PROJECT CARDS ── */
+      .proj-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 16px;
+      }
+      .proj {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 22px;
+      }
+      .proj-badge {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .badge-red {
+        background: rgba(248, 81, 73, 0.1);
+        border: 1px solid rgba(248, 81, 73, 0.25);
+        color: var(--red);
+      }
+      .badge-green {
+        background: rgba(63, 185, 80, 0.1);
+        border: 1px solid rgba(63, 185, 80, 0.25);
+        color: var(--green);
+      }
+      .proj h3 {
+        font-size: 17px;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .proj .tagline {
+        font-size: 12px;
+        color: var(--green);
+        font-style: italic;
+        margin-bottom: 12px;
+      }
+      .proj p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .proj p strong {
+        color: var(--text);
+      }
+
+      /* ── EXPERIENCE ── */
+      .exp-item {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px 24px;
+        margin-bottom: 10px;
+      }
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .exp-role {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .exp-date {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: monospace;
+        background: var(--surface2);
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+      .exp-company {
+        font-size: 13px;
+        color: var(--blue);
+        margin-bottom: 10px;
+      }
+      .exp-item ul {
+        padding-left: 16px;
+      }
+      .exp-item li {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .exp-item li strong {
+        color: var(--text);
+      }
+      .photo-strip {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .photo-thumb {
+        width: 80px;
+        height: 54px;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        color: var(--faint);
+        flex-shrink: 0;
+      }
+      .photo-thumb.gold {
+        border-color: rgba(240, 136, 62, 0.5);
+      }
+
+      /* ── ACHIEVEMENTS ── */
+      .ach-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .ach {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px 20px;
+      }
+      .ach-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+      .ach-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .ach-org {
+        font-size: 11px;
+        color: var(--orange);
+        margin-bottom: 8px;
+      }
+      .ach-desc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .cert-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+      .cert {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        font-size: 11px;
+        color: var(--muted);
+        padding: 4px 12px;
+        border-radius: 20px;
+      }
+
+      /* ── STACK ── */
+      .stack-wrap {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+      }
+      .stack-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .pill {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        font-size: 12px;
+        color: var(--muted);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-family: monospace;
+      }
+      .pill.primary {
+        color: var(--blue);
+        border-color: rgba(88, 166, 255, 0.2);
+      }
+
+      /* ── BELIEFS ── */
+      .cat-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin: 32px 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cat-lbl::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+      .beliefs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .bel {
+        font-size: 13px;
+        color: var(--faint);
+        line-height: 1.7;
+        padding: 9px 16px 9px 0;
+        border-bottom: 1px solid var(--surface2);
+        transition: color 0.15s;
+      }
+      .bel:hover {
+        color: var(--text);
+      }
+      .bel strong {
+        color: var(--text);
+      }
+      .bel em {
+        color: #adbac7;
+        font-style: italic;
+      }
+      .bel.q {
+        color: #adbac7;
+        font-style: italic;
+        border-left: 2px solid var(--green);
+        padding-left: 12px;
+      }
+      .bel.full {
+        grid-column: 1/-1;
+      }
+
+      /* ── CONTACT ── */
+      .contact-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 56px 40px;
+        text-align: center;
+      }
+      .contact-box h2 {
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+      .contact-box p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 440px;
+        margin: 0 auto 32px;
+        line-height: 1.7;
+      }
+      .contact-btns {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 24px 40px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--faint);
+        font-family: monospace;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        nav {
+          padding: 0 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        section {
+          padding: 64px 20px;
+        }
+        .about-grid,
+        .cs-body,
+        .proj-row,
+        .ach-row,
+        .beliefs-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-row {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cs-top {
+          flex-direction: column;
+        }
+        .contact-box {
+          padding: 40px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">ansh<span>.</span>dev</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#beliefs">Beliefs</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="nav-cta">Let's Talk →</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="rain-bg">
+        A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0
+        ! @ # $ % ^ &amp; * ( ) _ + [ ] { } | ; : , . &lt; &gt; ? A B C D E F G
+        H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0 ! @ # $ % ^
+        &amp; A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7
+        8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7
+        8 9 0 ! @ # $ % ^ &amp; * ( ) _ + A B C D E F G H I J K L M N O P Q R S
+        T U V W X Y Z 1 2 3 4 5 6 7 8 9 0 ! @ # $ % A B C D E F G H I J K L M N
+        O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0 ! @ # $ % ^ &amp; * ( ) A B
+        C D E F G H I J K L M N O P Q R S T U V W X Y Z
+      </div>
+      <div class="hero-badge">
+        Gold Coast, Australia · Available for opportunities
+      </div>
+      <div class="hero-title">FORWARD DEPLOYED<br /><span>ENGINEER</span></div>
+      <div class="hero-name">Anshumaan Saraf</div>
+      <div class="hero-sub">
+        I don't just write code. I embed with your business,
+        <strong>understand the problem</strong>, and build the system that
+        solves it.
+      </div>
+      <div class="hero-btns">
+        <a href="#work" class="btn-green">View Work ↓</a>
+        <a href="#contact" class="btn-ghost">Let's Talk →</a>
+      </div>
+      <div class="hero-scroll">scroll ↓</div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-eye">About</div>
+      <div class="section-h">The bigger story is the evolution.</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            You'll find <strong>wins here</strong>. You'll also find
+            <strong>rejections</strong>. And most importantly — the thought
+            process behind both.
+          </p>
+          <p>
+            I'm Anshumaan (Ansh), a
+            <strong>Forward Deployed Engineer</strong> and MIT student at
+            Griffith University, Gold Coast. I build systems that solve real
+            problems.
+          </p>
+          <p>
+            I'm figuring out what it means to become an engineer — not just
+            someone who writes code, but someone who
+            <strong
+              >focuses on business needs, thinks clearly, communicates
+              precisely, and stays obsessed with the right problems.</strong
+            >
+          </p>
+          <div class="stats-row">
+            <div class="stat">
+              <div class="val">$300k+</div>
+              <div class="lbl">revenue supported</div>
+            </div>
+            <div class="stat">
+              <div class="val">3 days</div>
+              <div class="lbl">to 5-figure launch</div>
+            </div>
+            <div class="stat">
+              <div class="val">🏆</div>
+              <div class="lbl">Hackathon winner, GC</div>
+            </div>
+            <div class="stat">
+              <div class="val">10→4k</div>
+              <div class="lbl">social followers grown</div>
+            </div>
+          </div>
+        </div>
+        <div class="nn-list">
+          <div
+            style="
+              font-size: 11px;
+              font-weight: 700;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              color: var(--muted);
+              margin-bottom: 4px;
+            "
+          >
+            My three non-negotiables
+          </div>
+          <div class="nn">
+            <div class="nn-head">
+              <span class="nn-arrow">→</span
+              ><span class="nn-title">Positioning</span>
+            </div>
+            <div class="nn-desc">
+              Knowing where I stand, where I'm going, and how to communicate
+              that clearly to anyone in the room.
+            </div>
+          </div>
+          <div class="nn">
+            <div class="nn-head">
+              <span class="nn-arrow">→</span
+              ><span class="nn-title">Communication</span>
+            </div>
+            <div class="nn-desc">
+              Most problems I've walked into weren't technical. They were a gap
+              between what someone meant and what someone else heard.
+            </div>
+          </div>
+          <div class="nn">
+            <div class="nn-head">
+              <span class="nn-arrow">→</span
+              ><span class="nn-title">Obsession</span>
+            </div>
+            <div class="nn-desc">
+              Caring deeply about the work, even when no one's watching. Still
+              learning. Still making mistakes worth documenting.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" style="padding-top: 0">
+      <div class="section-eye">Selected Work</div>
+      <div class="section-h">Things I've shipped.</div>
+      <div class="section-sub">
+        Outcome-first. Every project has a story behind why it was built.
+      </div>
+
+      <!-- Case study -->
+      <div class="cs">
+        <div class="cs-top">
+          <div>
+            <div class="cs-badge">CASE STUDY</div>
+            <div class="cs-title">
+              Tasman Star Seafood — Full Technology Platform
+            </div>
+            <div class="cs-org">
+              QLD's #1 seafood company · 2 retail stores · Own fishing fleet ·
+              Transport + wholesale
+            </div>
+          </div>
+          <div class="cs-nums">
+            <div class="cs-num">
+              <div class="v" style="color: var(--green)">$26k+</div>
+              <div class="k">SaaS/yr saved</div>
+            </div>
+            <div class="cs-num">
+              <div class="v" style="color: var(--orange)">5 days</div>
+              <div class="k">to $10k revenue</div>
+            </div>
+            <div class="cs-num">
+              <div class="v" style="color: var(--blue)">$300k+</div>
+              <div class="k">revenue supported</div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-q">
+            <h4>The Problem</h4>
+            <p>
+              A QLD seafood leader with a fishing fleet, 2 retail stores,
+              wholesale ops and transport — running on an old Shopify store with
+              <strong>no unified tech infrastructure.</strong>
+            </p>
+          </div>
+          <div class="cs-q">
+            <h4>The Hustle</h4>
+            <p>
+              Built their website <strong>before the interview.</strong> Walked
+              in and said:
+              <em
+                >"This website doesn't matter if you have no revenue from
+                it."</em
+              >
+              Got the job. First production role — international student, 24
+              hrs/week.
+            </p>
+          </div>
+          <div class="cs-q">
+            <h4>What I Built</h4>
+            <p>
+              Eliminated Shopify (saving $20k+/yr). Custom full-stack
+              e-commerce: <strong>dynamic pricing, RBAC</strong> (super admin /
+              admin / staff / wholesale), inventory system, iOS delivery app,
+              transport booking app, AI stock pipeline.
+            </p>
+          </div>
+          <div class="cs-q">
+            <h4>The Hard Parts</h4>
+            <p>
+              No production experience. Learned by
+              <strong>talking to IBM, Amazon & CrowdStrike engineers.</strong>
+              Navigated Australian privacy law, PCI DSS, human resistance to
+              change, and my own tendency to ship fast without documenting.
+            </p>
+          </div>
+        </div>
+        <div class="pipeline">
+          <h4>The Pipeline Built</h4>
+          <div class="tags">
+            <span class="tag hi">E-commerce + Dynamic Pricing</span>
+            <span class="tag hi">Inventory System</span>
+            <span class="tag hi">Transport Booking App</span>
+            <span class="tag hi">iOS Delivery Verification</span>
+            <span class="tag hi">AI Stock Management</span>
+            <span class="tag hi">RBAC + Wholesale Portal</span>
+            <span class="tag hi">SEO / AEO / GEO</span>
+            <span class="tag">Next.js</span><span class="tag">TypeScript</span>
+            <span class="tag">PostgreSQL</span
+            ><span class="tag">LangChain</span> <span class="tag">Swift</span
+            ><span class="tag">Vercel</span>
+          </div>
+        </div>
+        <div class="cs-links">
+          <a class="link-btn" href="#">↗ Live Site</a>
+          <a class="link-btn" href="#">↗ GitHub</a>
+        </div>
+      </div>
+
+      <!-- Medicrew + Ambassador -->
+      <div class="proj-row">
+        <div class="proj">
+          <span class="proj-badge badge-red">REJECTED → ITERATED</span>
+          <h3>Medicrew</h3>
+          <div class="tagline">
+            "What if 8 AI doctors argued about your diagnosis?"
+          </div>
+          <p>
+            Sister is a physiotherapist. Australian healthcare takes too long —
+            especially in rural Gold Coast aged-care. Built a
+            <strong>multi-agent debate framework</strong>: 8 AI residents argue,
+            supervising agent synthesises, doctors get structured reports.<br /><br />Applied
+            to Alexa Lumina Health. Rejected. Discovered Heidi doing something
+            similar, scraped their approach, iterated. The rejection made it
+            better.
+          </p>
+          <div class="tags" style="margin-top: 14px">
+            <span class="tag">Next.js</span><span class="tag">LangChain</span
+            ><span class="tag">Ollama</span><span class="tag">Docker</span
+            ><span class="tag">shadcn/ui</span>
+          </div>
+        </div>
+        <div class="proj">
+          <span class="proj-badge badge-green">BUILT FROM FRUSTRATION</span>
+          <h3>Ambassador</h3>
+          <div class="tagline">
+            "The bus didn't stop. So I built the complaint system."
+          </div>
+          <p>
+            Gold Coast public transport as an international student — the bus
+            doesn't always stop, nowhere to complain. Built a
+            <strong>real-time geospatial complaint platform</strong>: AI
+            classifies severity, maps issues by location, council admins see a
+            live command center.<br /><br />Proof that AI belongs in everyday
+            civic infrastructure.
+          </p>
+          <div class="tags" style="margin-top: 14px">
+            <span class="tag">Next.js</span><span class="tag">TypeScript</span
+            ><span class="tag">SSE</span
+            ><span class="tag">AI Classification</span
+            ><span class="tag">Geospatial</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" style="padding-top: 0">
+      <div class="section-eye">Experience</div>
+      <div class="section-h">Where I've worked.</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Forward Deployed Engineer</div>
+          <div class="exp-date">Feb 2026 – Present</div>
+        </div>
+        <div class="exp-company">Tasman Star Seafood · Gold Coast, AU</div>
+        <ul>
+          <li>
+            Replaced Shopify + Fresho SaaS saving
+            <strong>$26k+/year</strong> with a custom full-stack platform
+          </li>
+          <li>
+            Shipped e-commerce with RBAC, dynamic pricing, inventory — drove
+            <strong>$10k+ in 5 days</strong>
+          </li>
+          <li>
+            Architecting unified AI infrastructure for stock management across
+            warehouse + retail
+          </li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">
+            Admin Executive — Head of Digital Operations
+          </div>
+          <div class="exp-date">Nov 2022 – Jan 2025</div>
+        </div>
+        <div class="exp-company">
+          Center for International Relations · Parul University, India
+        </div>
+        <ul>
+          <li>
+            Led <strong>5 interns</strong> as head of the department's digital
+            operations
+          </li>
+          <li>
+            Grew social media from <strong>10 → 4,000 followers</strong> (400x)
+            through content strategy
+          </li>
+          <li>
+            Collaborated directly with the <strong>Director</strong> on
+            international events for 500+ attendees
+          </li>
+        </ul>
+        <div class="photo-strip">
+          <div class="photo-thumb">Group photo</div>
+          <div class="photo-thumb gold">📄 Letter of Appreciation</div>
+          <div class="photo-thumb">Bristol collab</div>
+          <div class="photo-thumb">Intl. students</div>
+          <div class="photo-thumb">Network</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section style="padding-top: 0">
+      <div class="section-eye">Achievements</div>
+      <div class="section-h">Wins (and near-wins).</div>
+      <div class="ach-row">
+        <div class="ach">
+          <div class="ach-icon">🏆</div>
+          <div class="ach-title">AI Hackathon — 1st Place</div>
+          <div class="ach-org">Gold Coast Innovation Hub</div>
+          <div class="ach-desc">
+            Built "Alumni Quest Hub" for Tech Ready Women — gamified alumni
+            retention platform, fully functional prototype in 48 hours.
+          </div>
+        </div>
+        <div class="ach">
+          <div class="ach-icon">🥈</div>
+          <div class="ach-title">ANZ Cyber Crime Hackathon — Top 5</div>
+          <div class="ach-org">Griffith University</div>
+          <div class="ach-desc">
+            Security platform with AI detection + Blockchain audit logs.
+            Simulated threats with Kali Linux under time constraints.
+          </div>
+        </div>
+      </div>
+      <div class="cert-row">
+        <span class="cert">Full Stack Dev · GFG</span>
+        <span class="cert">DSA · TUF+</span>
+        <span class="cert">Google Data Analytics</span>
+        <span class="cert">AWS Cloud Fundamentals</span>
+        <span class="cert">Data Analytics · NPTEL</span>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section style="padding-top: 0">
+      <div class="section-eye">Stack</div>
+      <div class="section-h">What I build with.</div>
+      <div class="stack-wrap">
+        <div class="stack-pills">
+          <span class="pill primary">Next.js</span>
+          <span class="pill primary">TypeScript</span>
+          <span class="pill primary">React</span>
+          <span class="pill primary">LangChain</span>
+          <span class="pill">PostgreSQL</span>
+          <span class="pill">Prisma</span>
+          <span class="pill">Supabase</span>
+          <span class="pill">Docker</span>
+          <span class="pill">Ollama</span>
+          <span class="pill">Swift</span>
+          <span class="pill">Vue</span>
+          <span class="pill">Framer Motion</span>
+          <span class="pill">shadcn/ui</span>
+          <span class="pill">Vercel</span>
+          <span class="pill">Git</span>
+          <span class="pill">Figma</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BELIEFS -->
+    <section id="beliefs" style="padding-top: 0">
+      <div class="section-eye">Perspective</div>
+      <div class="section-h">Things I Believe</div>
+      <div class="section-sub">
+        Some learned the hard way. Some still being tested. All of them are
+        mine.
+      </div>
+
+      <div class="cat-lbl">On AI</div>
+      <div class="beliefs-grid">
+        <div class="bel">
+          For people like me,
+          <strong>AI is a goldmine in a gold rush.</strong> Imagination and
+          execution are the only limits.
+        </div>
+        <div class="bel">
+          The best way to understand AI isn't a course. It's a
+          <strong>dinner table conversation with your family.</strong>
+        </div>
+        <div class="bel">
+          If you can explain what you're building to your
+          <strong>mum and she gets excited</strong> — you're building something
+          real.
+        </div>
+        <div class="bel">
+          AI didn't make me a developer. It made me a
+          <strong>faster thinker.</strong>
+        </div>
+      </div>
+
+      <div class="cat-lbl">On shipping</div>
+      <div class="beliefs-grid">
+        <div class="bel">
+          <strong>Shipping fast beats the best strategy.</strong> The market
+          tells you more than any planning session.
+        </div>
+        <div class="bel q">
+          I built their website before the interview. That's still the best
+          decision I've ever made.
+        </div>
+        <div class="bel">
+          A working demo says more than a <strong>fifty-slide deck.</strong>
+        </div>
+        <div class="bel">
+          <strong>Landings > launches.</strong> Adoption matters more than
+          shipping.
+        </div>
+      </div>
+
+      <div class="cat-lbl">On learning</div>
+      <div class="beliefs-grid">
+        <div class="bel">
+          You learn more from <strong>one real conversation</strong> than from
+          ten tutorials.
+        </div>
+        <div class="bel">
+          <strong>Talk to your family</strong> about what you're building.
+          You'll understand it better yourself.
+        </div>
+        <div class="bel">
+          Rejection is just a dataset. <strong>Iterate anyway.</strong>
+        </div>
+        <div class="bel"><strong>Grit > talent.</strong> Every time.</div>
+      </div>
+
+      <div class="cat-lbl">On business & engineering</div>
+      <div class="beliefs-grid">
+        <div class="bel q">
+          "This website doesn't matter if you have no revenue from it."
+        </div>
+        <div class="bel">
+          <strong>Understand the workflow</strong> before you touch the code.
+        </div>
+        <div class="bel">
+          The business doesn't care how elegant the code is. It cares
+          <strong>if it works.</strong>
+        </div>
+        <div class="bel">
+          <strong>Revenue validates everything.</strong> Features validate
+          nothing on their own.
+        </div>
+      </div>
+
+      <div class="cat-lbl">On being you</div>
+      <div class="beliefs-grid">
+        <div class="bel">
+          <strong>Your constraints are your advantage.</strong> Pressure creates
+          shape.
+        </div>
+        <div class="bel">
+          <strong>Own your failures publicly.</strong> It builds more trust than
+          any portfolio.
+        </div>
+        <div class="bel">
+          Have <strong>strong opinions,</strong> loosely held.
+        </div>
+        <div class="bel full bel q" style="grid-column: 1/-1">
+          Still learning. Still growing. Still making mistakes worth
+          documenting.
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="padding-top: 0">
+      <div class="contact-box">
+        <h2>Got a problem that costs time or money?</h2>
+        <p>
+          I embed with your business, understand the problem deeply, and build
+          the system that fixes it. Let's talk.
+        </p>
+        <div class="contact-btns">
+          <a href="mailto:anshumaansaraf24@gmail.com" class="btn-green"
+            >anshumaansaraf24@gmail.com</a
+          >
+          <a
+            href="https://github.com/Ansh0928"
+            target="_blank"
+            class="btn-ghost"
+            >GitHub ↗</a
+          >
+          <a
+            href="https://www.linkedin.com/in/anshumaan-saraf/"
+            target="_blank"
+            class="btn-ghost"
+            >LinkedIn ↗</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Built by Anshumaan Saraf · Next.js · TypeScript · Deployed on Vercel
+    </footer>
+  </body>
+</html>

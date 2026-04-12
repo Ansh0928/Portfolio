@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Things I Believe — v2</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #010409;
+        color: #e6edf3;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        padding: 40px 20px;
+      }
+      .wrapper {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+
+      .section-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #8b949e;
+        margin-bottom: 6px;
+      }
+      .section-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #e6edf3;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+      }
+      .section-sub {
+        font-size: 13px;
+        color: #8b949e;
+        margin-bottom: 40px;
+        line-height: 1.6;
+        max-width: 500px;
+      }
+
+      .cat-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #58a6ff;
+        margin: 36px 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cat-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #21262d;
+      }
+
+      .beliefs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .belief {
+        font-size: 14px;
+        color: #6e7681;
+        line-height: 1.7;
+        padding: 10px 16px 10px 0;
+        border-bottom: 1px solid #161b22;
+        transition: color 0.15s;
+      }
+      .belief:hover {
+        color: #e6edf3;
+      }
+      .belief strong {
+        color: #e6edf3;
+        font-weight: 600;
+      }
+      .belief em {
+        color: #adbac7;
+        font-style: italic;
+      }
+      .belief.quote {
+        color: #adbac7;
+        font-style: italic;
+        font-size: 13px;
+        border-left: 2px solid #3fb950;
+        padding-left: 12px;
+      }
+      .belief.full {
+        grid-column: 1 / -1;
+      }
+
+      .note {
+        margin-top: 40px;
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        padding: 14px 18px;
+        font-size: 12px;
+        color: #8b949e;
+      }
+      .note strong {
+        color: #e6edf3;
+      }
+
+      @media (max-width: 640px) {
+        .beliefs-grid {
+          grid-template-columns: 1fr;
+        }
+        .section-title {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="section-eyebrow">Perspective</div>
+      <div class="section-title">Things I Believe</div>
+      <div class="section-sub">
+        Some of these I learned the hard way. Some I'm still testing. All of
+        them are mine.
+      </div>
+
+      <!-- ON AI -->
+      <div class="cat-label">On AI</div>
+      <div class="beliefs-grid">
+        <div class="belief">
+          For people like me,
+          <strong>AI is a goldmine in a gold rush.</strong> Imagination and
+          execution are the only limits.
+        </div>
+        <div class="belief">
+          The best way to understand AI isn't a course. It's a
+          <strong>dinner table conversation with your family.</strong>
+        </div>
+        <div class="belief">
+          If you can explain what you're building to your
+          <strong>mum and she gets excited</strong> — you're building something
+          real.
+        </div>
+        <div class="belief">
+          AI didn't make me a developer. It made me a
+          <strong>faster thinker.</strong>
+        </div>
+        <div class="belief">
+          The engineers who'll win aren't the ones who fear AI. They're the ones
+          <strong>already building with it.</strong>
+        </div>
+        <div class="belief">
+          AI-native teams will move <strong>10x faster</strong> than those
+          unwilling to change.
+        </div>
+      </div>
+
+      <!-- ON SHIPPING -->
+      <div class="cat-label">On shipping</div>
+      <div class="beliefs-grid">
+        <div class="belief">
+          <strong>Shipping fast beats the best strategy.</strong> The market
+          tells you more than any planning session.
+        </div>
+        <div class="belief quote">
+          I built their website before the interview. That's still the best
+          decision I've ever made.
+        </div>
+        <div class="belief">
+          A working demo says more than a <strong>fifty-slide deck.</strong>
+        </div>
+        <div class="belief">
+          The goal isn't perfect code. The goal is
+          <strong>something that works in production.</strong>
+        </div>
+        <div class="belief">
+          <strong>Landings > launches.</strong> Adoption matters more than
+          shipping.
+        </div>
+        <div class="belief">
+          Listen, build, ship, tell the customer, then
+          <strong>repeat forever.</strong>
+        </div>
+      </div>
+
+      <!-- ON LEARNING -->
+      <div class="cat-label">On learning</div>
+      <div class="beliefs-grid">
+        <div class="belief">
+          You learn more from <strong>one real conversation</strong> than from
+          ten tutorials. Talk to people.
+        </div>
+        <div class="belief">
+          <strong>Talk to your family</strong> about what you're building.
+          Especially your mum. You'll understand it better yourself.
+        </div>
+        <div class="belief">
+          Rejection is just a dataset. <strong>Iterate anyway.</strong>
+        </div>
+        <div class="belief"><strong>Grit > talent.</strong> Every time.</div>
+        <div class="belief">
+          There's no substitute for <strong>putting in the hours.</strong>
+        </div>
+        <div class="belief">
+          The engineers I respect most are the ones most willing to say
+          <em>"I don't know yet."</em>
+        </div>
+      </div>
+
+      <!-- ON BUSINESS -->
+      <div class="cat-label">On business & engineering</div>
+      <div class="beliefs-grid">
+        <div class="belief quote">
+          "This website doesn't matter if you have no revenue from it."
+        </div>
+        <div class="belief">
+          <strong>Understand the workflow</strong> before you touch the code.
+        </div>
+        <div class="belief">
+          The business doesn't care how elegant the code is. It cares
+          <strong>if it works.</strong>
+        </div>
+        <div class="belief">
+          <strong>Revenue validates everything.</strong> Features validate
+          nothing on their own.
+        </div>
+        <div class="belief">
+          The problem is always worth more time than
+          <strong>the solution you already thought of.</strong>
+        </div>
+        <div class="belief">
+          Make-vs-buy is a <strong>strategy question first</strong>, an
+          engineering question second.
+        </div>
+      </div>
+
+      <!-- ON COMMUNICATION -->
+      <div class="cat-label">On communication</div>
+      <div class="beliefs-grid">
+        <div class="belief">
+          <strong>Clear writing is clear thinking.</strong> If you can't write
+          it simply, you don't understand it yet.
+        </div>
+        <div class="belief">
+          Communication is the job.
+          <strong>The code is just the output.</strong>
+        </div>
+        <div class="belief">
+          Say the right thing, to the right people,
+          <strong>at the right time.</strong>
+        </div>
+        <div class="belief">
+          Mismatched expectations <strong>always lead to sadness.</strong>
+        </div>
+      </div>
+
+      <!-- ON BEING YOU -->
+      <div class="cat-label">On being you</div>
+      <div class="beliefs-grid">
+        <div class="belief">
+          <strong>Your constraints are your advantage.</strong> Pressure creates
+          shape.
+        </div>
+        <div class="belief">
+          Being new to something means you ask the questions
+          <strong>everyone else forgot to ask.</strong>
+        </div>
+        <div class="belief">
+          <strong>Own your failures publicly.</strong> It builds more trust than
+          any portfolio.
+        </div>
+        <div class="belief">
+          Have <strong>strong opinions,</strong> loosely held.
+        </div>
+        <div class="belief"><strong>Influence > titles.</strong> Always.</div>
+        <div
+          class="belief full belief"
+          style="
+            border-left: 2px solid #3fb950;
+            padding-left: 12px;
+            font-style: italic;
+            color: #adbac7;
+            font-size: 13px;
+          "
+        >
+          Still learning. Still growing. Still making mistakes worth
+          documenting.
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Feedback needed:</strong> Read each one — does it sound like
+        you? Cut anything that feels forced. Add anything missing. These should
+        feel like things you'd actually say, not things that sound smart on a
+        portfolio.
+      </div>
+    </div>
+  </body>
+</html>

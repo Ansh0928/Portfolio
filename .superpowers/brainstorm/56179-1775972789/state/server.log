@@ -1,0 +1,15 @@
+{"type":"server-started","port":53566,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:53566","screen_dir":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content","state_dir":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/state"}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/hero-copy.html"}
+{"source":"user-event","type":"click","text":"C\n    \n      \n        \"I'm figuring out what it means to be an engineer — not just someone who\n        writes code, but someone obsessed with the right problems.\"\n      \n      \n        Honest, vulnerable, personal. Matches your About section tone. Stands\n        out from every \"passionate developer\" cliché.","choice":"c","id":null,"timestamp":1775972992488}
+{"source":"user-event","type":"click","text":"B\n    \n      \n        \"From requirements to production — I find where your business bleeds\n        time or money, then build what stops it.\"\n      \n      \n        More direct. The \"time or money\" framing without a specific dollar\n        figure. Stays outcome-focused.","choice":"b","id":null,"timestamp":1775972993587}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/beliefs.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/beliefs.html"}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/beliefs-v2.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/beliefs-v2.html"}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/full-portfolio.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/full-portfolio.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/full-portfolio.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/full-portfolio.html"}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/work-section.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/56179-1775972789/content/work-section.html"}
+{"type":"server-stopped","reason":"idle timeout"}

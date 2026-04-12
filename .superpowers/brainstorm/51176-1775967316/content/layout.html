@@ -1,0 +1,294 @@
+<h2>How should the portfolio be laid out?</h2>
+<p class="subtitle">
+  Same dark vibe — different structures. Which feels right for how you want
+  people to move through your story?
+</p>
+
+<div class="cards">
+  <div class="card" data-choice="split-sidebar" onclick="toggleSelect(this)">
+    <div
+      class="card-image"
+      style="
+        background: #0d1117;
+        border-radius: 6px;
+        overflow: hidden;
+        min-height: 160px;
+        display: flex;
+        border: 1px solid #30363d;
+      "
+    >
+      <!-- Left sidebar -->
+      <div
+        style="
+          width: 38%;
+          background: #0d1117;
+          border-right: 1px solid #21262d;
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        "
+      >
+        <div style="color: #e6edf3; font-weight: 700; font-size: 13px">
+          Anshumaan<br />Saraf
+        </div>
+        <div style="color: #58a6ff; font-size: 10px">Fwd. Deployed Eng.</div>
+        <div
+          style="
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          "
+        >
+          <div style="color: #8b949e; font-size: 10px; cursor: pointer">
+            about
+          </div>
+          <div style="color: #58a6ff; font-size: 10px; cursor: pointer">
+            → experience
+          </div>
+          <div style="color: #8b949e; font-size: 10px; cursor: pointer">
+            projects
+          </div>
+          <div style="color: #8b949e; font-size: 10px; cursor: pointer">
+            contact
+          </div>
+        </div>
+      </div>
+      <!-- Right scrolling content -->
+      <div
+        style="
+          flex: 1;
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        "
+      >
+        <div
+          style="
+            color: #8b949e;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          "
+        >
+          Experience
+        </div>
+        <div
+          style="
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            padding: 10px;
+          "
+        >
+          <div style="color: #e6edf3; font-size: 11px; font-weight: 600">
+            Forward Deployed Engineer
+          </div>
+          <div style="color: #58a6ff; font-size: 9px">Tasman Star Seafood</div>
+          <div style="color: #8b949e; font-size: 9px; margin-top: 4px">
+            Replaced $26k+/yr SaaS · $300K+ revenue
+          </div>
+        </div>
+        <div
+          style="
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            padding: 10px;
+            opacity: 0.5;
+          "
+        >
+          <div style="color: #e6edf3; font-size: 11px">Admin Executive</div>
+          <div style="color: #8b949e; font-size: 9px">Parul University</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Fixed Sidebar + Scrolling Content</h3>
+      <p>
+        Nav stays fixed on the left, content scrolls on the right. The Brittany
+        Chiang pattern — widely loved, very readable, highlights highlighted
+        section in nav as you scroll.
+      </p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="single-scroll" onclick="toggleSelect(this)">
+    <div
+      class="card-image"
+      style="
+        background: #0d1117;
+        border-radius: 6px;
+        overflow: hidden;
+        min-height: 160px;
+        padding: 0;
+        border: 1px solid #30363d;
+      "
+    >
+      <!-- Full width hero -->
+      <div style="padding: 18px 18px 12px; border-bottom: 1px solid #21262d">
+        <div
+          style="
+            font-size: 20px;
+            font-weight: 900;
+            color: #e6edf3;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+          "
+        >
+          I build systems<br /><span style="color: #58a6ff"
+            >businesses rely on.</span
+          >
+        </div>
+        <div style="color: #8b949e; font-size: 10px; margin-top: 6px">
+          Next.js · TypeScript · AI · Gold Coast, AU
+        </div>
+      </div>
+      <!-- Sections stacked -->
+      <div
+        style="
+          padding: 10px 18px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        "
+      >
+        <div style="display: flex; gap: 8px; align-items: center">
+          <div style="width: 28px; height: 1px; background: #58a6ff"></div>
+          <div
+            style="
+              color: #58a6ff;
+              font-size: 9px;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+          >
+            Projects
+          </div>
+        </div>
+        <div
+          style="
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            padding: 8px;
+          "
+        >
+          <div style="color: #e6edf3; font-size: 11px">
+            Tasman Star Seafood Platform
+          </div>
+          <div style="color: #3fb950; font-size: 9px">
+            $300K+ revenue · 3 days to launch
+          </div>
+        </div>
+        <div
+          style="
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            padding: 8px;
+            opacity: 0.6;
+          "
+        >
+          <div style="color: #e6edf3; font-size: 11px">Medicrew</div>
+          <div style="color: #8b949e; font-size: 9px">
+            Multi-agent medical AI
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Single Page Vertical Scroll</h3>
+      <p>
+        Top navbar, full-width hero, sections stack downward. Simple, fast,
+        mobile-perfect. Works great for storytelling — hero → about → projects →
+        contact.
+      </p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="bento" onclick="toggleSelect(this)">
+    <div
+      class="card-image"
+      style="
+        background: #0d1117;
+        border-radius: 6px;
+        overflow: hidden;
+        min-height: 160px;
+        padding: 12px;
+        border: 1px solid #30363d;
+      "
+    >
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+          gap: 8px;
+          height: 100%;
+        "
+      >
+        <!-- Big hero card -->
+        <div
+          style="
+            grid-column: 1/3;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 12px;
+          "
+        >
+          <div style="color: #e6edf3; font-weight: 800; font-size: 14px">
+            Anshumaan Saraf
+          </div>
+          <div style="color: #58a6ff; font-size: 10px">
+            Forward Deployed Engineer
+          </div>
+        </div>
+        <!-- Two smaller cards -->
+        <div
+          style="
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 10px;
+          "
+        >
+          <div style="color: #3fb950; font-size: 9px">Hackathon</div>
+          <div style="color: #e6edf3; font-size: 11px; font-weight: 600">
+            🏆 Winner
+          </div>
+          <div style="color: #8b949e; font-size: 9px">GC Innovation Hub</div>
+        </div>
+        <div
+          style="
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 10px;
+          "
+        >
+          <div style="color: #f0883e; font-size: 9px">Saved</div>
+          <div style="color: #e6edf3; font-size: 11px; font-weight: 600">
+            $26k+/yr
+          </div>
+          <div style="color: #8b949e; font-size: 9px">in SaaS costs</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Bento Grid</h3>
+      <p>
+        Cards of different sizes arranged in a grid. Very trendy (2025–26),
+        great for surfacing stats/achievements prominently. More visual
+        complexity — requires more design care.
+      </p>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top: 16px; font-size: 13px">
+  Click to select — or tell me in the terminal.
+</p>

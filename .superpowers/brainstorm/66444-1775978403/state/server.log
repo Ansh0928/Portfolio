@@ -1,0 +1,11 @@
+{"type":"server-started","port":56368,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:56368","screen_dir":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content","state_dir":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/state"}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/hero-concepts.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/hero-concepts.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      The \"One Unforgettable Thing\"\n      \n        Every top portfolio has a signature moment. Bruno has the car. Ravi has\n        the horse. Yours has raining letters — but it's from a template. Design\n        a custom interactive hero that's uniquely you: a WebGL\n        terminal, a real-time typing race, a data viz of your projects, or a\n        custom cursor experience.","choice":"a","id":null,"timestamp":1775978575049}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/photo-treatment.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/photo-treatment.html"}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/typography-identity-detail.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/typography-identity-detail.html"}
+{"type":"screen-added","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/alignment-compare.html"}
+{"type":"screen-updated","file":"/Users/anshumaansaraf/Desktop/Projects/PRTFOLIO/.superpowers/brainstorm/66444-1775978403/content/alignment-compare.html"}
+{"type":"server-stopped","reason":"owner process exited"}

@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work Section — Preview</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #010409;
+        --surface: #0d1117;
+        --surface2: #161b22;
+        --border: #21262d;
+        --border2: #30363d;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --faint: #6e7681;
+        --green: #3fb950;
+        --blue: #58a6ff;
+        --orange: #f0883e;
+        --red: #f85149;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        padding: 48px 24px;
+      }
+      .wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .section-eye {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .section-h {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.5px;
+        margin-bottom: 6px;
+      }
+      .section-sub {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 40px;
+      }
+
+      /* ── FEATURED CARD ── */
+      .featured {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        transition: border-color 0.2s;
+      }
+      .featured:hover {
+        border-color: var(--border2);
+      }
+
+      .featured-top {
+        padding: 28px 32px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--border);
+      }
+      .featured-badge {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        background: var(--green);
+        color: #0d1117;
+        padding: 2px 9px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .featured-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .featured-org {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .metrics {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .metric {
+        text-align: center;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 8px;
+        padding: 10px 16px;
+      }
+      .metric .v {
+        font-size: 20px;
+        font-weight: 900;
+        font-family: monospace;
+      }
+      .metric .k {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .featured-body {
+        padding: 24px 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .teaser-block h4 {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--blue);
+        margin-bottom: 8px;
+      }
+      .teaser-block p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .teaser-block p strong {
+        color: var(--text);
+      }
+      .teaser-block em {
+        color: var(--text);
+        font-style: italic;
+      }
+
+      .featured-footer {
+        padding: 16px 32px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tag {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        color: var(--muted);
+        font-size: 10px;
+        padding: 3px 9px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      .cs-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--green);
+        text-decoration: none;
+        border: 1px solid rgba(63, 185, 80, 0.3);
+        padding: 7px 16px;
+        border-radius: 7px;
+        background: rgba(63, 185, 80, 0.06);
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .cs-link:hover {
+        background: rgba(63, 185, 80, 0.12);
+        border-color: rgba(63, 185, 80, 0.5);
+      }
+
+      /* ── SECONDARY CARDS ── */
+      .cards-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+        cursor: pointer;
+      }
+      .card:hover {
+        border-color: var(--border2);
+        transform: translateY(-2px);
+      }
+      .card-badge {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+      .badge-red {
+        background: rgba(248, 81, 73, 0.1);
+        border: 1px solid rgba(248, 81, 73, 0.2);
+        color: var(--red);
+      }
+      .badge-green {
+        background: rgba(63, 185, 80, 0.1);
+        border: 1px solid rgba(63, 185, 80, 0.2);
+        color: var(--green);
+      }
+      .card h3 {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .card .tagline {
+        font-size: 12px;
+        color: var(--green);
+        font-style: italic;
+        margin-bottom: 14px;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+        flex: 1;
+      }
+      .card p strong {
+        color: var(--text);
+      }
+      .card-footer {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .card-tags {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .card-link {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--blue);
+        text-decoration: none;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .card-link:hover {
+        color: var(--text);
+      }
+
+      /* ── CASE STUDY PAGE HINT ── */
+      .cs-page-hint {
+        margin-top: 40px;
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 10px;
+        padding: 20px 24px;
+      }
+      .cs-page-hint .title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+      }
+      .route-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .route {
+        font-family: monospace;
+        font-size: 12px;
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        color: var(--blue);
+        padding: 5px 12px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 640px) {
+        .featured-body,
+        .cards-row {
+          grid-template-columns: 1fr;
+        }
+        .featured-top {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="section-eye">Selected Work</div>
+      <div class="section-h">Things I've shipped.</div>
+      <div class="section-sub">
+        Each project has a full story. Click to read it.
+      </div>
+
+      <!-- ── FEATURED: TASMAN STAR ── -->
+      <div class="featured">
+        <div class="featured-top">
+          <div>
+            <div class="featured-badge">FEATURED CASE STUDY</div>
+            <div class="featured-title">Tasman Star Seafood</div>
+            <div class="featured-org">
+              QLD's #1 seafood company · Full technology platform
+            </div>
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="v" style="color: var(--green)">$26k+</div>
+              <div class="k">SaaS/yr saved</div>
+            </div>
+            <div class="metric">
+              <div class="v" style="color: var(--orange)">5 days</div>
+              <div class="k">to $10k revenue</div>
+            </div>
+            <div class="metric">
+              <div class="v" style="color: var(--blue)">$300k+</div>
+              <div class="k">revenue supported</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-body">
+          <div class="teaser-block">
+            <h4>The short version</h4>
+            <p>
+              A QLD seafood leader with no unified tech infrastructure hired me
+              — an international student, 24hrs/week — as their sole
+              technologist. I eliminated Shopify, built a full custom platform,
+              and drove <strong>$10k+ in 5 days</strong> of launch.
+            </p>
+          </div>
+          <div class="teaser-block">
+            <h4>What makes this different</h4>
+            <p>
+              I built their website <em>before the interview.</em> Walked in and
+              said:
+              <em
+                >"This website doesn't matter if you have no revenue from
+                it."</em
+              >
+              Got the job. Then I had to figure out production development in
+              real time.
+            </p>
+          </div>
+        </div>
+
+        <div class="featured-footer">
+          <div class="tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">Swift</span>
+            <span class="tag">+3 more</span>
+          </div>
+          <a href="/work/tasman-star" class="cs-link">
+            Read full case study →
+          </a>
+        </div>
+      </div>
+
+      <!-- ── SECONDARY CARDS ── -->
+      <div class="cards-row">
+        <div class="card">
+          <span class="card-badge badge-red">REJECTED → ITERATED</span>
+          <h3>Medicrew</h3>
+          <div class="tagline">
+            "What if 8 AI doctors argued about your diagnosis?"
+          </div>
+          <p>
+            Multi-agent debate framework for rural healthcare screening. Applied
+            to Alexa Lumina Health — <strong>rejected</strong>. Discovered
+            Heidi, iterated, rebuilt. The rejection made it better.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="tag">LangChain</span>
+              <span class="tag">Ollama</span>
+              <span class="tag">Docker</span>
+            </div>
+            <a href="/work/medicrew" class="card-link">See everything →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="card-badge badge-green">BUILT FROM FRUSTRATION</span>
+          <h3>Ambassador</h3>
+          <div class="tagline">
+            "The bus didn't stop. So I built the complaint system."
+          </div>
+          <p>
+            Real-time geospatial complaint platform for Gold Coast public
+            transport. AI classifies severity,
+            <strong>maps issues live</strong>, council admins see a command
+            center.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="tag">SSE</span>
+              <span class="tag">Geospatial</span>
+              <span class="tag">AI</span>
+            </div>
+            <a href="/work/ambassador" class="card-link">See everything →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ROUTES HINT ── -->
+      <div class="cs-page-hint">
+        <div class="title">Dedicated pages — separate routes</div>
+        <div class="route-row">
+          <span class="route">/work/tasman-star</span>
+          <span class="route">/work/medicrew</span>
+          <span class="route">/work/ambassador</span>
+        </div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 10px">
+          Each page gets the full story: problem → build → obstacles → outcome →
+          lessons. Main page just teases it.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

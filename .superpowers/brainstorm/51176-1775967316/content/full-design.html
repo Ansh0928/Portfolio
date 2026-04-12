@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anshumaan Saraf — Portfolio Design Preview</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #010409;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #e6edf3;
+      }
+
+      .section-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #8b949e;
+        margin-bottom: 6px;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: #000;
+        min-height: 340px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px solid #21262d;
+        gap: 16px;
+        text-align: center;
+        padding: 40px 24px;
+      }
+      .hero-rain {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        opacity: 0.18;
+        font-family: monospace;
+        font-size: 13px;
+        color: #3fb950;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 10px;
+        pointer-events: none;
+      }
+      .hero-title {
+        font-family: monospace;
+        font-size: 28px;
+        font-weight: 700;
+        color: #e6edf3;
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-title span {
+        color: #3fb950;
+      }
+      .hero-sub {
+        color: #8b949e;
+        font-size: 13px;
+        position: relative;
+        z-index: 2;
+        max-width: 460px;
+        line-height: 1.6;
+      }
+      .hero-ctас {
+        display: flex;
+        gap: 12px;
+        position: relative;
+        z-index: 2;
+      }
+      .btn-primary {
+        background: #3fb950;
+        color: #0d1117;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 8px 20px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+      }
+      .btn-outline {
+        background: transparent;
+        color: #e6edf3;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 8px 20px;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        cursor: pointer;
+      }
+
+      /* ── ABOUT ── */
+      .about {
+        background: #0d1117;
+        border: 1px solid #21262d;
+        border-radius: 10px;
+        padding: 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .about-left p {
+        color: #8b949e;
+        font-size: 13px;
+        line-height: 1.8;
+      }
+      .about-left p strong {
+        color: #e6edf3;
+      }
+      .about-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .stat-chip {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .stat-chip .num {
+        color: #3fb950;
+        font-weight: 700;
+        font-family: monospace;
+      }
+      .non-neg {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nn-card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        padding: 14px;
+      }
+      .nn-card .arrow {
+        color: #58a6ff;
+        font-weight: 700;
+        margin-right: 6px;
+      }
+      .nn-card .title {
+        color: #e6edf3;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .nn-card .desc {
+        color: #8b949e;
+        font-size: 11px;
+        margin-top: 4px;
+        line-height: 1.5;
+      }
+
+      /* ── CASE STUDY ── */
+      .case-study {
+        background: #0d1117;
+        border: 1px solid #21262d;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .cs-header {
+        background: #161b22;
+        border-bottom: 1px solid #21262d;
+        padding: 20px 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .cs-tag {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #0d1117;
+        padding: 2px 8px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 6px;
+      }
+      .cs-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #e6edf3;
+        margin-bottom: 4px;
+      }
+      .cs-sub {
+        font-size: 12px;
+        color: #8b949e;
+      }
+      .cs-metrics {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .metric {
+        text-align: center;
+        background: #0d1117;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        padding: 10px 16px;
+      }
+      .metric .val {
+        font-size: 18px;
+        font-weight: 800;
+        font-family: monospace;
+      }
+      .metric .key {
+        font-size: 10px;
+        color: #8b949e;
+        margin-top: 2px;
+      }
+      .cs-body {
+        padding: 24px 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .cs-section h4 {
+        color: #58a6ff;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+      .cs-section p {
+        color: #8b949e;
+        font-size: 12px;
+        line-height: 1.7;
+      }
+      .cs-section p strong {
+        color: #e6edf3;
+      }
+      .stack-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .tag {
+        background: #161b22;
+        border: 1px solid #30363d;
+        color: #8b949e;
+        font-size: 10px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      .cs-links {
+        padding: 14px 28px;
+        border-top: 1px solid #21262d;
+        display: flex;
+        gap: 10px;
+      }
+      .link-btn {
+        font-size: 11px;
+        color: #58a6ff;
+        border: 1px solid #30363d;
+        padding: 5px 12px;
+        border-radius: 5px;
+        background: transparent;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      /* ── PROJECTS ROW ── */
+      .projects-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .proj-card {
+        background: #0d1117;
+        border: 1px solid #21262d;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .proj-card .rej-badge {
+        font-size: 9px;
+        background: #f851491a;
+        border: 1px solid #f8514933;
+        color: #f85149;
+        padding: 2px 7px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        display: inline-block;
+      }
+      .proj-card .win-badge {
+        font-size: 9px;
+        background: #3fb9501a;
+        border: 1px solid #3fb95033;
+        color: #3fb950;
+        padding: 2px 7px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        display: inline-block;
+      }
+      .proj-card h3 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #e6edf3;
+        margin-bottom: 6px;
+      }
+      .proj-card .tagline {
+        font-size: 11px;
+        color: #3fb950;
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+      .proj-card p {
+        font-size: 12px;
+        color: #8b949e;
+        line-height: 1.6;
+      }
+
+      /* ── EXPERIENCE ── */
+      .exp-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .exp-item {
+        background: #0d1117;
+        border: 1px solid #21262d;
+        padding: 18px 24px;
+        border-radius: 8px;
+      }
+      .exp-item .role {
+        font-size: 14px;
+        font-weight: 700;
+        color: #e6edf3;
+      }
+      .exp-item .company {
+        font-size: 12px;
+        color: #58a6ff;
+        margin-bottom: 6px;
+      }
+      .exp-item .date {
+        font-size: 11px;
+        color: #8b949e;
+        float: right;
+        font-family: monospace;
+      }
+      .exp-item ul {
+        margin-top: 8px;
+        padding-left: 16px;
+      }
+      .exp-item li {
+        font-size: 12px;
+        color: #8b949e;
+        line-height: 1.7;
+      }
+      .exp-item li strong {
+        color: #e6edf3;
+      }
+
+      /* ── WINS ── */
+      .wins-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .win-card {
+        background: #0d1117;
+        border: 1px solid #21262d;
+        border-radius: 8px;
+        padding: 16px 20px;
+        flex: 1;
+        min-width: 200px;
+      }
+      .win-card .trophy {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+      .win-card .title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #e6edf3;
+      }
+      .win-card .org {
+        font-size: 11px;
+        color: #f0883e;
+        margin-top: 2px;
+      }
+      .win-card .desc {
+        font-size: 11px;
+        color: #8b949e;
+        margin-top: 6px;
+        line-height: 1.5;
+      }
+
+      /* ── STACK ── */
+      .stack-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .stack-pill {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #e6edf3;
+        padding: 5px 14px;
+        font-family: monospace;
+      }
+      .stack-pill.primary {
+        border-color: #58a6ff33;
+        color: #58a6ff;
+      }
+
+      /* ── CTA ── */
+      .cta-section {
+        background: #0d1117;
+        border: 1px solid #21262d;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+      }
+      .cta-section h2 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #e6edf3;
+        margin-bottom: 8px;
+      }
+      .cta-section p {
+        color: #8b949e;
+        font-size: 13px;
+        max-width: 420px;
+        margin: 0 auto 20px;
+        line-height: 1.6;
+      }
+      .cta-buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ── WRAPPER ── */
+      .wrapper {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 24px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .block {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 8px 0 2px;
+      }
+      .divider span {
+        color: #8b949e;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        white-space: nowrap;
+      }
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #21262d;
+      }
+
+      @media (max-width: 600px) {
+        .about {
+          grid-template-columns: 1fr;
+        }
+        .cs-body {
+          grid-template-columns: 1fr;
+        }
+        .projects-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div style="text-align: center; padding: 16px 0 8px">
+        <div style="font-size: 11px; color: #8b949e; letter-spacing: 1px">
+          PORTFOLIO DESIGN PREVIEW · DARK BUILDER · SINGLE SCROLL
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="block">
+        <div class="section-label">① Hero</div>
+        <div class="hero">
+          <div class="hero-rain">
+            A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8
+            9 0 ! @ # $ % ^ &amp; * ( ) _ + - = [ ] { } | ; : , . &lt; &gt; ? A
+            B C D E F G H I J K L M N O P Q R S T A B C D E F G H I J K L M N O
+            P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0 ! @ # $ % ^ &amp; * ( ) _
+            + A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7
+            8 9 0 ! @ # A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+          </div>
+          <div class="hero-title">FORWARD DEPLOYED <span>ENGINEER</span></div>
+          <div class="hero-sub">
+            I don't just write code. I embed with your business, find where time
+            and money bleeds, and build systems that stop it.
+          </div>
+          <div class="hero-ctас">
+            <button class="btn-primary">View Work ↓</button>
+            <button class="btn-outline">Let's Talk →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="divider"><span>About</span></div>
+      <div class="block">
+        <div class="section-label">② About</div>
+        <div class="about">
+          <div class="about-left">
+            <p>
+              You'll find <strong>wins here</strong>. You'll also find
+              <strong>rejections</strong>. And most importantly — the thought
+              process behind both.<br /><br />
+              I'm Anshumaan (Ansh), a
+              <strong>Forward Deployed Engineer</strong> and MIT student at
+              Griffith University, Gold Coast. I build systems that solve real
+              problems.<br /><br />
+              I'm figuring out what it means to become an engineer — not just
+              someone who writes code, but someone who
+              <strong
+                >focuses on business needs, thinks clearly, and stays obsessed
+                with the right problems</strong
+              >.
+            </p>
+            <div class="about-stats">
+              <div class="stat-chip">
+                <span class="num">$26k+</span> in SaaS costs eliminated
+              </div>
+              <div class="stat-chip">
+                <span class="num">$300k+</span> annual revenue supported
+              </div>
+              <div class="stat-chip">
+                <span class="num">3 days</span> to 5-figure launch
+              </div>
+              <div class="stat-chip">
+                <span class="num">🏆</span> Hackathon winner, Gold Coast
+              </div>
+            </div>
+          </div>
+          <div class="non-neg">
+            <div
+              style="
+                color: #8b949e;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 4px;
+              "
+            >
+              My three non-negotiables
+            </div>
+            <div class="nn-card">
+              <div>
+                <span class="arrow">→</span
+                ><span class="title">Positioning</span>
+              </div>
+              <div class="desc">
+                Knowing where I stand, where I'm going, and how to communicate
+                that clearly to anyone in the room.
+              </div>
+            </div>
+            <div class="nn-card">
+              <div>
+                <span class="arrow">→</span
+                ><span class="title">Communication</span>
+              </div>
+              <div class="desc">
+                Saying the right thing, to the right people, at the right time —
+                across code, docs, and boardrooms.
+              </div>
+            </div>
+            <div class="nn-card">
+              <div>
+                <span class="arrow">→</span><span class="title">Obsession</span>
+              </div>
+              <div class="desc">
+                Caring deeply about the work, even when no one's watching. Still
+                learning. Still making mistakes worth documenting.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY: TASMAN STAR -->
+      <div class="divider"><span>Selected Work</span></div>
+      <div class="block">
+        <div class="section-label">③ Case Study — Tasman Star Seafood</div>
+        <div class="case-study">
+          <div class="cs-header">
+            <div>
+              <div class="cs-tag" style="background: #3fb950">CASE STUDY</div>
+              <div class="cs-title">
+                Tasman Star Seafood — Full Technology Platform
+              </div>
+              <div class="cs-sub">
+                QLD's #1 seafood company · 2 retail stores · Own fishing fleet ·
+                Transport + wholesale
+              </div>
+            </div>
+            <div class="cs-metrics">
+              <div class="metric">
+                <div class="val" style="color: #3fb950">$26k+</div>
+                <div class="key">SaaS/yr saved</div>
+              </div>
+              <div class="metric">
+                <div class="val" style="color: #f0883e">5 days</div>
+                <div class="key">to $10k revenue</div>
+              </div>
+              <div class="metric">
+                <div class="val" style="color: #58a6ff">$300k+</div>
+                <div class="key">revenue supported</div>
+              </div>
+            </div>
+          </div>
+          <div class="cs-body">
+            <div class="cs-section">
+              <h4>The Problem</h4>
+              <p>
+                A QLD seafood leader with a fishing fleet, 2 retail stores,
+                wholesale ops and transport — running on an
+                <strong>old Shopify store</strong> with no unified tech
+                infrastructure. They needed someone to build it all from
+                scratch.
+              </p>
+            </div>
+            <div class="cs-section">
+              <h4>The Hustle</h4>
+              <p>
+                Built their website <strong>before the interview</strong>.
+                Walked in and said:
+                <em style="color: #e6edf3"
+                  >"This website doesn't matter if you have no revenue from
+                  it."</em
+                >
+                Got the job. First real production role — 24hrs/week as an
+                international student.
+              </p>
+            </div>
+            <div class="cs-section">
+              <h4>What I Built</h4>
+              <p>
+                Eliminated Shopify (saving $20k+/yr). Built
+                <strong>custom full-stack e-commerce</strong> with dynamic
+                pricing, RBAC (super admin / admin / staff / wholesale),
+                inventory system, delivery verification iOS app, and an
+                <strong>AI-powered stock management pipeline</strong> — all as
+                sole developer.
+              </p>
+            </div>
+            <div class="cs-section">
+              <h4>The Hard Parts</h4>
+              <p>
+                No production experience. Learned by
+                <strong
+                  >talking to IBM, Amazon & CrowdStrike engineers on the
+                  bus</strong
+                >. Navigated Australian privacy law, PCI DSS compliance, human
+                resistance to change, and my own tendency to ship fast without
+                documenting.
+              </p>
+            </div>
+          </div>
+          <div style="padding: 0 28px 20px">
+            <div class="cs-section">
+              <h4>The Pipeline Built</h4>
+              <div class="stack-tags" style="margin-top: 6px">
+                <span
+                  class="tag"
+                  style="color: #e6edf3; border-color: #58a6ff33"
+                  >E-commerce + Dynamic Pricing</span
+                >
+                <span
+                  class="tag"
+                  style="color: #e6edf3; border-color: #58a6ff33"
+                  >Inventory System</span
+                >
+                <span
+                  class="tag"
+                  style="color: #e6edf3; border-color: #58a6ff33"
+                  >Transport Booking App</span
+                >
+                <span
+                  class="tag"
+                  style="color: #e6edf3; border-color: #58a6ff33"
+                  >iOS Delivery Verification</span
+                >
+                <span
+                  class="tag"
+                  style="color: #e6edf3; border-color: #58a6ff33"
+                  >AI Stock Management</span
+                >
+                <span
+                  class="tag"
+                  style="color: #e6edf3; border-color: #58a6ff33"
+                  >RBAC + Wholesale Portal</span
+                >
+                <span
+                  class="tag"
+                  style="color: #e6edf3; border-color: #58a6ff33"
+                  >SEO / AEO / GEO</span
+                >
+              </div>
+              <div class="stack-tags" style="margin-top: 10px">
+                <span class="tag">Next.js</span
+                ><span class="tag">TypeScript</span
+                ><span class="tag">PostgreSQL</span>
+                <span class="tag">Prisma</span><span class="tag">LangChain</span
+                ><span class="tag">Swift</span><span class="tag">Vercel</span>
+              </div>
+            </div>
+          </div>
+          <div class="cs-links">
+            <a class="link-btn" href="#">↗ Live Site</a>
+            <a class="link-btn" href="#">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDICREW + AMBASSADOR -->
+      <div class="block">
+        <div class="section-label">③ Projects — Medicrew & Ambassador</div>
+        <div class="projects-row">
+          <div class="proj-card">
+            <div class="rej-badge">REJECTED → ITERATED</div>
+            <h3>Medicrew</h3>
+            <div class="tagline">
+              What if 8 AI doctors argued about your diagnosis?
+            </div>
+            <p>
+              Sister is a physiotherapist. Australian healthcare takes forever —
+              especially in rural Gold Coast aged care areas. Built a
+              multi-agent framework where
+              <strong style="color: #e6edf3"
+                >8 AI residents debate a diagnosis</strong
+              >, a supervising agent synthesizes the outcome, and doctors get a
+              structured report on their portal.<br /><br />
+              Applied to Alexa Lumina Health. Got rejected. Discovered
+              <strong style="color: #e6edf3">Heidi</strong> was doing something
+              similar — scraped it, iterated, redesigned. The rejection made it
+              better.
+            </p>
+            <div class="stack-tags" style="margin-top: 12px">
+              <span class="tag">Next.js</span><span class="tag">LangChain</span
+              ><span class="tag">Ollama</span> <span class="tag">Docker</span
+              ><span class="tag">shadcn/ui</span>
+            </div>
+          </div>
+
+          <div class="proj-card">
+            <div class="win-badge">BUILT FROM FRUSTRATION</div>
+            <h3>Ambassador</h3>
+            <div class="tagline">
+              The bus didn't stop. So I built the complaint system.
+            </div>
+            <p>
+              As an international student on Gold Coast public transport — the
+              bus doesn't always stop. Nowhere to complain. Built a
+              <strong style="color: #e6edf3"
+                >real-time geospatial complaint platform</strong
+              >
+              where AI classifies severity, maps issues by location, and council
+              admins see a live command center.<br /><br />
+              Proof that AI belongs in everyday civic infrastructure — not just
+              enterprise software.
+            </p>
+            <div class="stack-tags" style="margin-top: 12px">
+              <span class="tag">Next.js</span><span class="tag">TypeScript</span
+              ><span class="tag">SSE</span>
+              <span class="tag">AI Classification</span
+              ><span class="tag">Geospatial</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="divider"><span>Experience</span></div>
+      <div class="block">
+        <div class="section-label">④ Experience</div>
+        <div class="exp-row">
+          <div class="exp-item">
+            <span class="date">Feb 2026 – Present</span>
+            <div class="role">Forward Deployed Engineer</div>
+            <div class="company">Tasman Star Seafood · Gold Coast, AU</div>
+            <ul>
+              <li>
+                Replaced Shopify + Fresho SaaS tools saving
+                <strong>$26k+/year</strong> with custom full-stack platform
+              </li>
+              <li>
+                Shipped e-commerce with RBAC, dynamic pricing, and inventory —
+                drove <strong>$10k+ in 5 days</strong>
+              </li>
+              <li>
+                Architecting unified AI infrastructure for stock management
+                across warehouse + retail
+              </li>
+            </ul>
+          </div>
+          <div class="exp-item" style="opacity: 0.65">
+            <span class="date">Nov 2022 – Jan 2025</span>
+            <div class="role">Admin Executive</div>
+            <div class="company">
+              Center for International Relations · Parul University, India
+            </div>
+            <ul>
+              <li>
+                Coordinated international events for
+                <strong>500+ attendees</strong>
+              </li>
+              <li>
+                30% increase in program visibility through digital content
+                strategy
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- WINS -->
+      <div class="divider"><span>Wins</span></div>
+      <div class="block">
+        <div class="section-label">⑤ Achievements</div>
+        <div class="wins-row">
+          <div class="win-card">
+            <div class="trophy">🏆</div>
+            <div class="title">AI Hackathon — 1st Place</div>
+            <div class="org">Gold Coast Innovation Hub</div>
+            <div class="desc">
+              Built Alumni Quest Hub for Tech Ready Women — gamified alumni
+              retention — fully functional prototype in 48 hours.
+            </div>
+          </div>
+          <div class="win-card">
+            <div class="trophy">🥈</div>
+            <div class="title">ANZ Cyber Crime Hackathon — Top 5</div>
+            <div class="org">Griffith University</div>
+            <div class="desc">
+              Security platform with AI detection + Blockchain audit logs.
+              Simulated threats with Kali Linux under time pressure.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STACK -->
+      <div class="divider"><span>Stack</span></div>
+      <div class="block">
+        <div class="section-label">⑥ Tech Stack</div>
+        <div
+          style="
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 20px;
+          "
+        >
+          <div class="stack-grid">
+            <span class="stack-pill primary">Next.js</span>
+            <span class="stack-pill primary">TypeScript</span>
+            <span class="stack-pill primary">React</span>
+            <span class="stack-pill primary">LangChain</span>
+            <span class="stack-pill">PostgreSQL</span>
+            <span class="stack-pill">Prisma</span>
+            <span class="stack-pill">Supabase</span>
+            <span class="stack-pill">Docker</span>
+            <span class="stack-pill">Ollama</span>
+            <span class="stack-pill">Swift</span>
+            <span class="stack-pill">Vue</span>
+            <span class="stack-pill">Framer Motion</span>
+            <span class="stack-pill">shadcn/ui</span>
+            <span class="stack-pill">Vercel</span>
+            <span class="stack-pill">Git</span>
+            <span class="stack-pill">Figma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="divider"><span>Contact</span></div>
+      <div class="block">
+        <div class="section-label">⑦ Contact</div>
+        <div class="cta-section">
+          <h2>Got a problem that costs time or money?</h2>
+          <p>
+            I embed with your business, understand the problem deeply, and build
+            the system that fixes it. Let's talk.
+          </p>
+          <div class="cta-buttons">
+            <button class="btn-primary">anshumaansaraf24@gmail.com</button>
+            <button class="btn-outline">GitHub ↗</button>
+            <button class="btn-outline">LinkedIn ↗</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          text-align: center;
+          padding: 20px 0;
+          color: #8b949e;
+          font-size: 11px;
+        "
+      >
+        End of design preview · Tell me in terminal what to change
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typography as Identity — Your Hero</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0d1117;
+        font-family: -apple-system, sans-serif;
+        color: white;
+      }
+
+      .label {
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        color: #3fb950;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      /* OPTION A: Stacked name, massive */
+      .concept-a {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 64px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+      }
+      .concept-a .tag {
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        color: #3fb950;
+        letter-spacing: 4px;
+        margin-bottom: 16px;
+      }
+      .concept-a h1 {
+        font-size: clamp(72px, 12vw, 160px);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -4px;
+        color: white;
+      }
+      .concept-a h1 span {
+        color: #3fb950;
+      }
+      .concept-a .sub {
+        margin-top: 32px;
+        font-size: 16px;
+        color: #64748b;
+        max-width: 480px;
+        line-height: 1.6;
+        font-family: "Courier New", monospace;
+      }
+      .concept-a .sub em {
+        color: #94a3b8;
+        font-style: normal;
+      }
+      .concept-a .ctas {
+        margin-top: 40px;
+        display: flex;
+        gap: 16px;
+      }
+      .btn-primary {
+        background: #3fb950;
+        color: black;
+        font-weight: 700;
+        font-size: 13px;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        font-family: "Courier New", monospace;
+        letter-spacing: 1px;
+      }
+      .btn-outline {
+        background: transparent;
+        color: white;
+        font-weight: 600;
+        font-size: 13px;
+        padding: 12px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        font-family: "Courier New", monospace;
+        letter-spacing: 1px;
+      }
+      .corner-tag {
+        position: absolute;
+        top: 32px;
+        right: 64px;
+        font-family: "Courier New", monospace;
+        font-size: 10px;
+        color: #3fb950;
+        letter-spacing: 2px;
+      }
+      .scroll-hint {
+        position: absolute;
+        bottom: 32px;
+        left: 64px;
+        font-family: "Courier New", monospace;
+        font-size: 10px;
+        color: #4a5568;
+        letter-spacing: 2px;
+      }
+
+      /* OPTION B: Split — name left, bio right */
+      .concept-b {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .concept-b .left {
+        padding: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .concept-b .right {
+        padding: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .concept-b h1 {
+        font-size: clamp(48px, 7vw, 96px);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -3px;
+        color: white;
+      }
+      .concept-b h1 .green {
+        color: #3fb950;
+      }
+      .concept-b .role {
+        margin-top: 24px;
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        color: #3fb950;
+        letter-spacing: 4px;
+      }
+      .concept-b .bio {
+        font-size: 18px;
+        color: #94a3b8;
+        line-height: 1.7;
+        max-width: 360px;
+      }
+      .concept-b .bio strong {
+        color: white;
+      }
+      .concept-b .stats {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .stat-row {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        font-family: "Courier New", monospace;
+      }
+      .stat-num {
+        font-size: 24px;
+        font-weight: 900;
+        color: #3fb950;
+      }
+      .stat-label {
+        font-size: 12px;
+        color: #4a5568;
+        letter-spacing: 1px;
+      }
+
+      .concept-label {
+        padding: 16px 64px;
+        background: rgba(63, 185, 80, 0.05);
+        border-bottom: 1px solid rgba(63, 185, 80, 0.1);
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        color: #3fb950;
+        letter-spacing: 3px;
+      }
+
+      h2.section-title {
+        padding: 48px 64px 16px;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        color: #4a5568;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="section-title">OPTION A — FULL BLEED NAME</h2>
+    <div class="concept-label">
+      YOUR NAME IS THE ENTIRE HERO. NOTHING ELSE COMPETES WITH IT.
+    </div>
+
+    <section class="concept-a">
+      <div class="tag">// FORWARD DEPLOYED ENGINEER · GOLD COAST, AU</div>
+      <h1>ANSH<br />UMAAN<br /><span>SARAF.</span></h1>
+      <p class="sub">
+        I don't just write code. I embed with your business,<br />understand the
+        problem, and <em>build the system that solves it.</em>
+      </p>
+      <div class="ctas">
+        <button class="btn-primary">VIEW WORK ↓</button>
+        <button class="btn-outline">LET'S TALK →</button>
+      </div>
+      <div class="corner-tag">AVAILABLE FOR HIRE</div>
+      <div class="scroll-hint">↓ SCROLL</div>
+    </section>
+
+    <h2 class="section-title">OPTION B — NAME LEFT, PROOF RIGHT</h2>
+    <div class="concept-label">
+      NAME ON THE LEFT. YOUR RECEIPTS ON THE RIGHT. BOTH ABOVE THE FOLD.
+    </div>
+
+    <section class="concept-b">
+      <div class="left">
+        <div class="role">FORWARD DEPLOYED ENGINEER</div>
+        <h1 style="margin-top: 16px">
+          ANSH<br />UMAAN<br /><span class="green">SARAF</span>
+        </h1>
+        <div
+          style="
+            margin-top: 24px;
+            font-family: &quot;Courier New&quot;, monospace;
+            font-size: 10px;
+            color: #4a5568;
+            letter-spacing: 2px;
+          "
+        >
+          GOLD COAST, AU · AVAILABLE
+        </div>
+      </div>
+      <div class="right">
+        <p class="bio">
+          I embed with your business, understand the problem, and
+          <strong>build the system that solves it.</strong>
+        </p>
+        <div class="stats">
+          <div class="stat-row">
+            <span class="stat-num">$300k+</span>
+            <span class="stat-label">REVENUE SUPPORTED</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">5 days</span>
+            <span class="stat-label">TO $10K REVENUE</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">$26k+</span>
+            <span class="stat-label">SAAS/YR ELIMINATED</span>
+          </div>
+        </div>
+        <div style="margin-top: 40px; display: flex; gap: 12px">
+          <button class="btn-primary">VIEW WORK ↓</button>
+          <button class="btn-outline">LET'S TALK →</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
