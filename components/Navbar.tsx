@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { SlideTabs } from "@/components/ui/slide-tabs";
 
 const navLinks = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "AI", href: "#ai" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -42,18 +44,9 @@ export function Navbar() {
             ANSHUMAAN SARAF
           </a>
 
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-sm text-[#8b949e] hover:text-[#e6edf3] transition-colors font-mono tracking-wide"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:block">
+            <SlideTabs tabs={navLinks} />
+          </div>
 
           <button
             className="md:hidden text-[#8b949e] hover:text-[#e6edf3] transition-colors"
