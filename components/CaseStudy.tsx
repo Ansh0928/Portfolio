@@ -18,9 +18,9 @@ function TextBlock({
 }) {
   return (
     <div>
-      <h4 className="text-[10px] font-mono text-[#58a6ff] tracking-[0.2em] uppercase mb-2">
+      <p className="text-[10px] font-mono text-[#58a6ff] tracking-[0.2em] uppercase mb-2">
         {block.heading}
-      </h4>
+      </p>
       <p className="text-[#c9d1d9] text-sm leading-relaxed">{block.body}</p>
     </div>
   );
@@ -33,9 +33,9 @@ function BulletsBlock({
 }) {
   return (
     <div>
-      <h4 className="text-[10px] font-mono text-[#58a6ff] tracking-[0.2em] uppercase mb-3">
+      <p className="text-[10px] font-mono text-[#58a6ff] tracking-[0.2em] uppercase mb-3">
         {block.heading}
-      </h4>
+      </p>
       <ul className="space-y-2">
         {block.items.map((item, i) => (
           <li
@@ -57,12 +57,12 @@ function QuoteBlock({
   block: Extract<CaseStudyBlock, { type: "quote" }>;
 }) {
   return (
-    <div className="my-2 pl-5 border-l-2 border-[#3fb950]/40 py-1">
+    <div className="pl-5 border-l-2 border-[#3fb950]/50 py-1">
       <p className="text-[#e6edf3] text-lg font-mono leading-snug">
         &ldquo;{block.text}&rdquo;
       </p>
       {block.attribution && (
-        <p className="text-xs font-mono text-[#3fb950]/70 mt-3 tracking-wide">
+        <p className="text-xs font-mono text-[#3fb950]/60 mt-3">
           — {block.attribution}
         </p>
       )}
@@ -77,14 +77,14 @@ function TimelineBlock({
 }) {
   return (
     <div>
-      <h4 className="text-[10px] font-mono text-[#58a6ff] tracking-[0.2em] uppercase mb-4">
+      <p className="text-[10px] font-mono text-[#58a6ff] tracking-[0.2em] uppercase mb-4">
         {block.heading}
-      </h4>
+      </p>
       <div className="relative pl-4 space-y-5">
         <div className="absolute left-0 top-2 bottom-2 w-px bg-[#3fb950]/20" />
         {block.steps.map((step, i) => (
           <div key={i} className="relative pl-5">
-            <div className="absolute left-[-1px] top-[5px] w-2 h-2 rounded-full bg-[#3fb950] border-2 border-[#0d1117] translate-x-[-50%]" />
+            <div className="absolute left-[-1px] top-[5px] w-2 h-2 rounded-full bg-[#3fb950] border-2 border-[#0d1117] -translate-x-1/2" />
             <p className="text-xs font-mono text-[#3fb950] mb-1 tracking-wide">
               {step.label}
             </p>
@@ -104,10 +104,10 @@ function CalloutBlock({
   block: Extract<CaseStudyBlock, { type: "callout" }>;
 }) {
   return (
-    <div className="border-l-2 border-[#3fb950]/40 pl-5 py-1">
-      <h4 className="text-[10px] font-mono text-[#3fb950] tracking-[0.2em] uppercase mb-2">
+    <div className="pl-5 border-l-2 border-[#3fb950]/40 py-1">
+      <p className="text-[10px] font-mono text-[#3fb950] tracking-[0.2em] uppercase mb-2">
         {block.heading}
-      </h4>
+      </p>
       <p className="text-[#c9d1d9] text-sm leading-relaxed">{block.body}</p>
     </div>
   );
@@ -151,22 +151,25 @@ function StoryBlock({ block }: { block: CaseStudyBlock }) {
 
 const verticalAccent: Record<
   VerticalColor,
-  { bar: string; label: string; stack: string }
+  { bar: string; title: string; stack: string; dot: string }
 > = {
   green: {
-    bar: "bg-[#3fb950]",
-    label: "text-[#3fb950]",
-    stack: "text-[#3fb950]/50",
+    bar: "border-l-2 border-[#3fb950]",
+    title: "text-[#3fb950]",
+    stack: "text-[#3fb950]/40",
+    dot: "bg-[#3fb950]",
   },
   blue: {
-    bar: "bg-[#58a6ff]",
-    label: "text-[#58a6ff]",
-    stack: "text-[#58a6ff]/50",
+    bar: "border-l-2 border-[#58a6ff]",
+    title: "text-[#58a6ff]",
+    stack: "text-[#58a6ff]/40",
+    dot: "bg-[#58a6ff]",
   },
   purple: {
-    bar: "bg-[#bc8cff]",
-    label: "text-[#bc8cff]",
-    stack: "text-[#bc8cff]/50",
+    bar: "border-l-2 border-[#bc8cff]",
+    title: "text-[#bc8cff]",
+    stack: "text-[#bc8cff]/40",
+    dot: "bg-[#bc8cff]",
   },
 };
 
@@ -176,158 +179,156 @@ function SystemDesignSection({ caseStudy }: { caseStudy: CaseStudyData }) {
 
   return (
     <div className="border-b border-white/8">
-      {/* ── Section label ── */}
-      <div className="px-7 pt-7 pb-4 flex items-center gap-4">
+      {/* Header */}
+      <div className="px-7 pt-7 pb-5 flex items-center gap-4">
         <span className="text-[10px] font-mono text-[#484f58] tracking-[0.25em] uppercase">
           System Design
         </span>
         <div className="flex-1 h-px bg-white/6" />
       </div>
 
-      {/* ── Before → After ── */}
+      {/* Before → After */}
       {caseStudy.beforeAfter && (
         <div className="px-7 pb-7">
-          <div className="grid grid-cols-[1fr_48px_1fr] gap-0">
-            {/* Before column */}
-            <div>
-              <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#f85149]/70 mb-3">
-                Before
-              </div>
-              <div className="space-y-1.5">
-                {caseStudy.beforeAfter.map((row, i) => (
-                  <div key={row.before} className="flex items-center gap-3 h-9">
-                    <span className="text-[10px] font-mono text-[#484f58] w-5 shrink-0">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="flex items-center gap-2.5 border-l border-[#f85149]/25 pl-3 h-full">
-                      <span className="text-xs font-mono text-[#8b949e] leading-tight">
-                        {row.before}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Column headers */}
+          <div className="grid grid-cols-[1fr_32px_1fr] mb-2">
+            <p className="text-[10px] font-mono text-[#f85149]/60 tracking-[0.2em] uppercase">
+              Before
+            </p>
+            <div />
+            <p className="text-[10px] font-mono text-[#3fb950]/60 tracking-[0.2em] uppercase">
+              After
+            </p>
+          </div>
 
-            {/* Arrow column */}
-            <div className="flex items-center justify-center pt-6">
-              <svg
-                width="24"
-                height="100%"
-                viewBox="0 0 24 180"
-                fill="none"
-                className="text-[#484f58]"
+          {/* Rows */}
+          <div className="space-y-1">
+            {caseStudy.beforeAfter.map((row, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-[1fr_32px_1fr] items-center gap-0"
               >
-                <path
-                  d="M4 90 L20 90 M14 84 L20 90 L14 96"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-
-            {/* After column */}
-            <div>
-              <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#3fb950]/70 mb-3">
-                After
+                {/* Before */}
+                <div className="flex items-center gap-3 bg-[#f85149]/4 border border-[#f85149]/12 rounded-l-lg px-4 py-2.5">
+                  <span className="text-[10px] font-mono text-[#f85149]/30 shrink-0 w-4">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-sm text-[#c9d1d9] font-mono leading-snug">
+                    {row.before}
+                  </span>
+                </div>
+                {/* Arrow */}
+                <div className="flex items-center justify-center h-full bg-white/2">
+                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+                    <path
+                      d="M0 4h10M7 1l3 3-3 3"
+                      stroke="#484f58"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                {/* After */}
+                <div className="flex items-center gap-3 bg-[#3fb950]/4 border border-[#3fb950]/12 rounded-r-lg px-4 py-2.5">
+                  <span className="text-sm text-[#e6edf3] font-mono leading-snug">
+                    {row.after}
+                  </span>
+                </div>
               </div>
-              <div className="space-y-1.5">
-                {caseStudy.beforeAfter.map((row, i) => (
-                  <div key={row.after} className="flex items-center gap-3 h-9">
-                    <div className="flex items-center gap-2.5 border-l border-[#3fb950]/30 pl-3 h-full flex-1">
-                      <span className="text-xs font-mono text-[#e6edf3] leading-tight">
-                        {row.after}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       )}
 
-      {/* ── Architecture ── */}
+      {/* Architecture */}
       {caseStudy.architecture && caseStudy.verticals && (
-        <div className="mx-7 mb-7 bg-[#0a0e13] border border-white/6 rounded-xl overflow-hidden">
-          {/* Input layer */}
-          <div className="px-5 py-4 border-b border-white/6 flex items-center gap-3 flex-wrap">
+        <div className="mx-7 mb-7 border border-white/8 rounded-xl overflow-hidden">
+          {/* Input → pricing */}
+          <div className="px-5 py-3.5 bg-[#161b22] border-b border-white/6 flex items-center gap-3 flex-wrap">
             <span className="text-[10px] font-mono text-[#484f58] tracking-[0.2em] uppercase shrink-0">
               Input
             </span>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#8b949e]">
-              <span className="px-2.5 py-1 bg-white/4 border border-white/8 rounded">
-                📧 {caseStudy.architecture.inputLabel}
-              </span>
-              <span className="text-[#484f58]">→</span>
-              <span className="text-[#3fb950]/80">
-                {caseStudy.architecture.inputFlow}
-              </span>
-            </div>
+            <span className="text-xs font-mono text-[#8b949e] bg-white/4 border border-white/8 rounded px-2.5 py-1">
+              📧 {caseStudy.architecture.inputLabel}
+            </span>
+            <svg
+              width="20"
+              height="8"
+              viewBox="0 0 20 8"
+              fill="none"
+              className="shrink-0"
+            >
+              <path
+                d="M0 4h16M12 1l4 3-4 3"
+                stroke="#484f58"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="text-xs font-mono text-[#3fb950]/70">
+              {caseStudy.architecture.inputFlow}
+            </span>
           </div>
 
           {/* Central platform */}
-          <div className="px-5 py-5 border-b border-white/6">
-            <div className="flex items-start justify-between gap-4">
+          <div className="px-5 py-4 bg-[#0f1a14] border-b border-white/6">
+            <div className="flex items-start gap-4 justify-between flex-wrap">
               <div>
-                <div className="text-[10px] font-mono text-[#484f58] tracking-[0.2em] uppercase mb-2">
-                  Platform
-                </div>
-                <div
-                  className="text-xl font-bold text-[#e6edf3] leading-tight"
+                <p
+                  className="text-[22px] text-[#3fb950] leading-tight mb-1"
                   style={{
                     fontFamily: "var(--font-barlow), sans-serif",
-                    letterSpacing: "-0.01em",
+                    fontWeight: 800,
                   }}
                 >
                   {caseStudy.architecture.platformTitle}
-                </div>
-                <p className="text-xs text-[#8b949e] mt-1.5 leading-relaxed max-w-md">
+                </p>
+                <p className="text-xs text-[#8b949e] leading-relaxed">
                   {caseStudy.architecture.platformSub}
                 </p>
               </div>
-              <div className="shrink-0 text-right">
-                <div className="flex gap-1.5 justify-end flex-wrap">
-                  {caseStudy.architecture.platformStack
-                    .split(" · ")
-                    .map((s) => (
-                      <span
-                        key={s}
-                        className="text-[10px] font-mono text-[#484f58] bg-white/4 border border-white/8 rounded px-2 py-0.5"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                </div>
+              <div className="flex gap-1.5 flex-wrap shrink-0">
+                {caseStudy.architecture.platformStack.split(" · ").map((s) => (
+                  <span
+                    key={s}
+                    className="text-[10px] font-mono text-[#484f58] border border-white/8 rounded px-2 py-0.5 bg-white/2"
+                  >
+                    {s}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
 
           {/* 3 verticals */}
-          <div className="grid grid-cols-3 divide-x divide-white/6">
-            {caseStudy.verticals.map((v) => {
+          <div className="grid grid-cols-3 bg-[#161b22]">
+            {caseStudy.verticals.map((v, i) => {
               const c = verticalAccent[v.color];
               return (
-                <div key={v.title} className="p-4">
-                  <div className={`w-4 h-0.5 ${c.bar} mb-3`} />
-                  <div className={`text-sm font-bold mb-0.5 ${c.label}`}>
-                    {v.icon} {v.title}
+                <div
+                  key={v.title}
+                  className={`p-4 ${c.bar} ${i < 2 ? "border-r border-white/6" : ""}`}
+                >
+                  <div className={`flex items-center gap-2 mb-2`}>
+                    <span className={`text-base`}>{v.icon}</span>
+                    <span className={`text-sm font-semibold ${c.title}`}>
+                      {v.title}
+                    </span>
                   </div>
-                  <div className={`text-[10px] font-mono mb-3 ${c.stack}`}>
+                  <p className={`text-[10px] font-mono mb-3 ${c.stack}`}>
                     {v.stack}
-                  </div>
+                  </p>
                   <ul className="space-y-1.5">
                     {v.features.map((f) => (
-                      <li
-                        key={f}
-                        className="text-[11px] text-[#8b949e] leading-snug flex gap-2 items-start"
-                      >
-                        <span className="text-[#484f58] mt-0.5 shrink-0">
-                          ·
+                      <li key={f} className="flex gap-2 items-start">
+                        <span
+                          className={`w-1 h-1 rounded-full ${c.dot} mt-1.5 shrink-0`}
+                        />
+                        <span className="text-[11px] text-[#8b949e] leading-snug">
+                          {f}
                         </span>
-                        <span>{f}</span>
                       </li>
                     ))}
                   </ul>
@@ -336,25 +337,21 @@ function SystemDesignSection({ caseStudy }: { caseStudy: CaseStudyData }) {
             })}
           </div>
 
-          {/* AI layer — full-width spanning strip */}
-          <div className="border-t border-[#3fb950]/15 bg-[#3fb950]/3 px-5 py-3">
-            <div className="flex items-center gap-3 flex-wrap">
-              <div className="flex items-center gap-2 shrink-0">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse" />
-                <span className="text-[10px] font-mono text-[#3fb950] tracking-[0.2em] uppercase">
-                  AI Layer
+          {/* AI layer */}
+          <div className="px-5 py-3 bg-[#0f1a14] border-t border-[#3fb950]/15 flex items-center gap-4 flex-wrap">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse" />
+              <span className="text-[10px] font-mono text-[#3fb950] tracking-[0.2em] uppercase">
+                AI Layer
+              </span>
+            </div>
+            <div className="h-3 w-px bg-white/10 shrink-0" />
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              {caseStudy.architecture.aiFeatures.map((f) => (
+                <span key={f} className="text-[11px] font-mono text-[#8b949e]">
+                  {f}
                 </span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {caseStudy.architecture.aiFeatures.map((f) => (
-                  <span
-                    key={f}
-                    className="text-[10px] font-mono text-[#8b949e]"
-                  >
-                    {f}
-                  </span>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -397,30 +394,29 @@ function CaseStudyModal({
       />
 
       <div className="relative z-10 w-full max-w-2xl max-h-[92vh] overflow-y-auto bg-[#0d1117] border border-white/10 rounded-2xl shadow-2xl">
-        {/* ── Sticky header ── */}
+        {/* Header */}
         <div className="sticky top-0 z-10 bg-[#0d1117]/96 backdrop-blur-md border-b border-white/8 px-7 py-5 flex items-start justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-1.5">
               {caseStudy.isActiveBuild && (
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse" />
+                <>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse" />
                   <span className="text-[10px] font-mono text-[#3fb950] tracking-[0.2em] uppercase">
                     Active Build
                   </span>
-                  <span className="text-[#484f58] font-mono text-[10px]">
-                    ·
-                  </span>
-                </div>
+                  <span className="text-[#484f58] text-[10px]">·</span>
+                </>
               )}
               <span className="text-[10px] font-mono text-[#484f58] tracking-[0.2em] uppercase">
                 Case Study
               </span>
             </div>
             <h2
-              className="text-3xl text-[#e6edf3] leading-none tracking-tight"
+              className="text-[32px] text-[#e6edf3] leading-none"
               style={{
                 fontFamily: "var(--font-barlow), sans-serif",
                 fontWeight: 800,
+                letterSpacing: "-0.01em",
               }}
             >
               {caseStudy.company.toUpperCase()}
@@ -431,28 +427,29 @@ function CaseStudyModal({
           </div>
           <button
             onClick={onClose}
-            className="text-[#484f58] hover:text-[#e6edf3] transition-colors p-1.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3fb950] shrink-0"
+            className="text-[#484f58] hover:text-[#e6edf3] transition-colors p-2 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3fb950] shrink-0"
             aria-label="Close"
           >
             <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
+              strokeLinecap="round"
             >
-              <path d="M3 3l10 10M13 3L3 13" />
+              <path d="M1 1l12 12M13 1L1 13" />
             </svg>
           </button>
         </div>
 
-        {/* ── Metrics ── */}
+        {/* Metrics */}
         <div className="grid grid-cols-3 divide-x divide-white/6 border-b border-white/8">
           {caseStudy.metrics.map((m) => (
             <div key={m.label} className="px-6 py-5">
               <div
-                className="text-4xl text-[#3fb950] leading-none"
+                className="text-[42px] leading-none text-[#3fb950]"
                 style={{
                   fontFamily: "var(--font-barlow), sans-serif",
                   fontWeight: 800,
@@ -460,48 +457,48 @@ function CaseStudyModal({
               >
                 {m.value}
               </div>
-              <div className="text-[10px] text-[#484f58] font-mono tracking-[0.15em] uppercase mt-1.5">
+              <div className="text-[10px] text-[#484f58] font-mono tracking-[0.15em] uppercase mt-2">
                 {m.label}
               </div>
             </div>
           ))}
         </div>
 
-        {/* ── System design ── */}
+        {/* System design */}
         <SystemDesignSection caseStudy={caseStudy} />
 
-        {/* ── Story blocks ── */}
+        {/* Story */}
         <div className="px-7 py-7 space-y-7">
           {caseStudy.story.map((block, i) => (
             <StoryBlock key={i} block={block} />
           ))}
         </div>
 
-        {/* ── Pipeline tags ── */}
+        {/* Pipeline tags */}
         <div className="px-7 py-5 border-t border-white/8">
-          <div className="text-[10px] font-mono text-[#484f58] tracking-[0.2em] uppercase mb-3">
+          <p className="text-[10px] font-mono text-[#484f58] tracking-[0.2em] uppercase mb-3">
             Systems Built
-          </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-2">
+          </p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
             {caseStudy.pipelineTags.map((tag) => (
               <span
                 key={tag}
                 className="text-xs font-mono text-[#8b949e] flex items-center gap-2"
               >
-                <span className="w-1 h-1 rounded-full bg-[#3fb950]/50 inline-block" />
+                <span className="w-1 h-1 rounded-full bg-[#3fb950]/40 inline-block" />
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        {/* ── Tech + links ── */}
+        {/* Tech + links */}
         <div className="px-7 py-5 border-t border-white/8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
           <div className="flex flex-wrap gap-2">
             {caseStudy.techTags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-[10px] font-mono bg-white/4 text-[#8b949e] border border-white/8 rounded"
+                className="px-2.5 py-1 text-[10px] font-mono bg-white/4 text-[#8b949e] border border-white/8 rounded"
               >
                 {tag}
               </span>
@@ -515,7 +512,7 @@ function CaseStudyModal({
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-[#3fb950] hover:underline"
               >
-                Live Site ↗
+                Live ↗
               </a>
             )}
             {caseStudy.links.github && (
@@ -547,208 +544,111 @@ export function CaseStudy({ caseStudy }: Props) {
       <MotionSection aria-label={`${caseStudy.company} case study`}>
         <button
           onClick={() => setOpen(true)}
-          className="relative w-full text-left group bg-[#0d1117] border border-white/8 rounded-2xl overflow-hidden hover:border-[#3fb950]/30 transition-all duration-500 hover:shadow-[0_0_60px_rgba(63,185,80,0.06)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3fb950]"
+          className="relative w-full text-left group border border-white/8 rounded-2xl overflow-hidden
+                     hover:border-[#3fb950]/25 transition-all duration-500
+                     hover:shadow-[0_0_80px_rgba(63,185,80,0.05)]
+                     focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3fb950]"
+          style={{
+            background:
+              "linear-gradient(160deg, #0f1410 0%, #0d1117 40%, #0a0d0f 100%)",
+          }}
         >
-          {/* Matrix shader on hover */}
           <CelestialMatrixShader
-            className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"
+            className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-60 transition-opacity duration-1000 pointer-events-none"
             style={{ zIndex: 0 }}
           />
 
           <div className="relative z-10">
-            {/* ── Hero — massive type ── */}
-            <div
-              className="relative px-7 pt-8 pb-6 border-b border-white/6 overflow-hidden"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle, rgba(63,185,80,0.04) 1px, transparent 1px)",
-                backgroundSize: "24px 24px",
-              }}
-            >
-              {/* Active build badge */}
+            {/* ── Top bar: label + active badge ── */}
+            <div className="px-7 pt-6 pb-0 flex items-center justify-between">
+              <span className="text-[10px] font-mono text-[#484f58] tracking-[0.25em] uppercase">
+                Case Study · Forward Deployed Engineer
+              </span>
               {caseStudy.isActiveBuild && (
-                <div className="absolute top-6 right-6 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse" />
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950] animate-pulse" />
                   <span className="text-[10px] font-mono text-[#3fb950] tracking-[0.2em] uppercase">
                     Active Build
                   </span>
                 </div>
               )}
+            </div>
 
-              <div className="text-[10px] font-mono text-[#484f58] tracking-[0.25em] uppercase mb-3">
-                Case Study · Forward Deployed Engineer
-              </div>
-
+            {/* ── Company name — the poster moment ── */}
+            <div className="px-7 pt-4 pb-6 border-b border-white/6">
               <h3
-                className="text-[56px] leading-[0.95] text-white group-hover:text-[#3fb950] transition-colors duration-500 mb-3"
+                className="text-[clamp(40px,7vw,72px)] leading-[0.92] text-[#e6edf3]
+                           group-hover:text-[#3fb950] transition-colors duration-500 mb-3"
                 style={{
                   fontFamily: "var(--font-barlow), sans-serif",
                   fontWeight: 900,
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.025em",
                 }}
               >
                 {caseStudy.company.toUpperCase()}
               </h3>
-
-              <p className="text-xs font-mono text-[#484f58] leading-relaxed max-w-lg">
-                QLD&apos;s #1 seafood company · One engineer replacing an entire
-                disconnected tech stack
+              <p className="text-sm text-[#8b949e] max-w-lg leading-relaxed">
+                QLD&apos;s #1 seafood company. One engineer. Replaced an entire
+                disconnected tech stack — e-commerce, inventory, transport,
+                field ops, and an AI pipeline.
               </p>
             </div>
 
-            {/* ── Problem — numbered ops list ── */}
-            {caseStudy.problems && caseStudy.problems.length > 0 && (
-              <div className="px-7 py-5 border-b border-white/6 bg-[#080b0f]">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[10px] font-mono text-[#f85149]/60 tracking-[0.25em] uppercase">
-                    Problem
-                  </span>
-                  <div className="flex-1 h-px bg-[#f85149]/10" />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-0">
-                  {caseStudy.problems.map((p, i) => (
-                    <div
-                      key={p}
-                      className="flex items-baseline gap-3 py-1.5 border-b border-white/4 last:border-0"
-                    >
-                      <span className="text-[10px] font-mono text-[#f85149]/40 shrink-0 w-5">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-[11px] font-mono text-[#8b949e]">
-                        {p}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            {/* ── The quote — the real hook ── */}
+            <div className="px-7 py-6 border-b border-white/6">
+              <p className="text-base font-mono text-[#e6edf3] leading-relaxed">
+                &ldquo;Built their website before the interview. Walked in and
+                said:
+                <span className="text-[#3fb950]">
+                  {" "}
+                  this website doesn&apos;t matter if you have no revenue from
+                  it.
+                </span>
+                &rdquo;
+              </p>
+            </div>
 
-            {/* ── System preview ── */}
-            {caseStudy.verticals && caseStudy.verticals.length > 0 && (
-              <div className="px-7 py-5 border-b border-white/6 bg-[#080b0f]">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[10px] font-mono text-[#58a6ff]/60 tracking-[0.25em] uppercase">
-                    Architecture
-                  </span>
-                  <div className="flex-1 h-px bg-[#58a6ff]/8" />
-                </div>
-
-                <div className="flex items-center gap-2 flex-wrap">
-                  {/* Warehouse */}
-                  <div className="px-3 py-1.5 bg-white/3 border border-white/8 rounded-lg">
-                    <div className="text-[10px] font-mono text-[#8b949e]">
-                      📦 Warehouse
-                    </div>
-                    <div className="text-[9px] font-mono text-[#484f58] mt-0.5">
-                      invoice scraping
-                    </div>
-                  </div>
-
-                  <svg
-                    width="20"
-                    height="12"
-                    viewBox="0 0 20 12"
-                    fill="none"
-                    className="shrink-0 text-[#484f58]"
-                  >
-                    <path
-                      d="M0 6h16M12 2l4 4-4 4"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-
-                  {/* Master platform */}
-                  <div className="px-3 py-1.5 bg-[#3fb950]/5 border border-[#3fb950]/20 rounded-lg">
-                    <div className="text-[10px] font-mono text-[#3fb950] font-bold">
-                      🧠 Master Platform
-                    </div>
-                    <div className="text-[9px] font-mono text-[#3fb950]/40 mt-0.5">
-                      live AI dashboard
-                    </div>
-                  </div>
-
-                  <svg
-                    width="20"
-                    height="12"
-                    viewBox="0 0 20 12"
-                    fill="none"
-                    className="shrink-0 text-[#484f58]"
-                  >
-                    <path
-                      d="M0 6h16M12 2l4 4-4 4"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-
-                  {/* Verticals */}
-                  {caseStudy.verticals.map((v, i) => {
-                    const colors = {
-                      green:
-                        "bg-[#3fb950]/5 border-[#3fb950]/20 text-[#3fb950]",
-                      blue: "bg-[#58a6ff]/5 border-[#58a6ff]/20 text-[#58a6ff]",
-                      purple:
-                        "bg-[#bc8cff]/5 border-[#bc8cff]/20 text-[#bc8cff]",
-                    };
-                    const subColors = {
-                      green: "text-[#3fb950]/40",
-                      blue: "text-[#58a6ff]/40",
-                      purple: "text-[#bc8cff]/40",
+            {/* ── 3 verticals — what was built ── */}
+            {caseStudy.verticals && (
+              <div className="px-7 py-5 border-b border-white/6">
+                <p className="text-[10px] font-mono text-[#484f58] tracking-[0.25em] uppercase mb-4">
+                  What was built
+                </p>
+                <div className="grid grid-cols-3 gap-3">
+                  {caseStudy.verticals.map((v) => {
+                    const styles = {
+                      green: "border-[#3fb950]/20 text-[#3fb950]",
+                      blue: "border-[#58a6ff]/20 text-[#58a6ff]",
+                      purple: "border-[#bc8cff]/20 text-[#bc8cff]",
                     };
                     return (
-                      <div key={v.title} className="flex items-center gap-2">
+                      <div
+                        key={v.title}
+                        className={`border rounded-xl px-4 py-3 bg-white/2 ${styles[v.color]}`}
+                      >
+                        <div className="text-lg mb-1">{v.icon}</div>
                         <div
-                          className={`px-3 py-1.5 border rounded-lg ${colors[v.color]}`}
+                          className={`text-sm font-semibold leading-tight ${styles[v.color].split(" ")[1]}`}
                         >
-                          <div className="text-[10px] font-mono font-bold">
-                            {v.icon} {v.title}
-                          </div>
-                          <div
-                            className={`text-[9px] font-mono mt-0.5 ${subColors[v.color]}`}
-                          >
-                            {v.stack.split(" · ")[0]}
-                          </div>
+                          {v.title}
                         </div>
-                        {i < caseStudy.verticals!.length - 1 && (
-                          <svg
-                            width="20"
-                            height="12"
-                            viewBox="0 0 20 12"
-                            fill="none"
-                            className="shrink-0 text-[#484f58]"
-                          >
-                            <path
-                              d="M0 6h16M12 2l4 4-4 4"
-                              stroke="currentColor"
-                              strokeWidth="1.2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        )}
+                        <div className="text-[10px] font-mono text-[#484f58] mt-1">
+                          {v.stack.split(" · ")[0]}
+                        </div>
                       </div>
                     );
                   })}
                 </div>
-
-                <div className="text-[9px] font-mono text-[#484f58] mt-3">
-                  Neon · Supabase · Prisma ORM
-                </div>
               </div>
             )}
 
-            {/* ── Footer — metrics + CTA ── */}
-            <div className="px-7 py-4 flex items-center justify-between gap-6">
+            {/* ── Footer: metrics + CTA ── */}
+            <div className="px-7 py-4 flex items-center justify-between gap-4">
               <div className="flex items-center gap-6">
                 {caseStudy.metrics.map((m) => (
                   <div key={m.label}>
                     <div
-                      className="text-xl text-[#3fb950] leading-none"
+                      className="text-[22px] text-[#3fb950] leading-none"
                       style={{
                         fontFamily: "var(--font-barlow), sans-serif",
                         fontWeight: 800,
@@ -763,12 +663,15 @@ export function CaseStudy({ caseStudy }: Props) {
                 ))}
               </div>
 
-              <div className="flex items-center gap-2 text-xs font-mono text-[#3fb950] group-hover:gap-3 transition-all duration-300 shrink-0">
+              <div
+                className="flex items-center gap-2 text-xs font-mono text-[#3fb950] shrink-0
+                              group-hover:gap-3 transition-all duration-300"
+              >
                 Read case study
                 <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
                   <path
-                    d="M0 5h12M8 1l4 4-4 4"
-                    stroke="#3fb950"
+                    d="M0 5h12M8 1.5l4 3.5-4 3.5"
+                    stroke="currentColor"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
