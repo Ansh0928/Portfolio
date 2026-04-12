@@ -2,15 +2,16 @@
 
 // ── STATS BAR ──────────────────────────────────────────────────────────────
 export type StatItem = {
-  value: string;
+  prefix: string;
+  animValue: number;
+  suffix: string;
   label: string;
 };
 
 export const statsBar: StatItem[] = [
-  { value: "$300k+", label: "revenue supported" },
-  { value: "5 days", label: "to $10k revenue" },
-  { value: "$26k+", label: "SaaS/yr saved" },
-  { value: "🏆 1st", label: "place hackathon" },
+  { prefix: "$", animValue: 300, suffix: "k+", label: "revenue supported" },
+  { prefix: "", animValue: 5, suffix: " days", label: "to $10k revenue" },
+  { prefix: "$", animValue: 26, suffix: "k+", label: "SaaS/yr saved" },
 ];
 
 // ── HERO ────────────────────────────────────────────────────────────────────
@@ -40,7 +41,32 @@ export type CaseStudyBlock =
       heading: string;
       steps: { label: string; detail: string }[];
     }
-  | { type: "callout"; heading: string; body: string };
+  | { type: "callout"; heading: string; body: string }
+  | { type: "image"; src: string; alt: string; caption?: string };
+
+export type VerticalColor = "green" | "blue" | "purple";
+
+export type Vertical = {
+  icon: string;
+  title: string;
+  stack: string;
+  color: VerticalColor;
+  features: string[];
+};
+
+export type ArchitectureData = {
+  inputLabel: string;
+  inputFlow: string;
+  platformTitle: string;
+  platformSub: string;
+  platformStack: string;
+  aiFeatures: string[];
+};
+
+export type BeforeAfterRow = {
+  before: string;
+  after: string;
+};
 
 export type CaseStudyData = {
   id: string;
@@ -54,6 +80,12 @@ export type CaseStudyData = {
   pipelineTags: string[];
   techTags: string[];
   links: { live?: string; github?: string };
+  // System design fields
+  isActiveBuild?: boolean;
+  problems?: string[];
+  beforeAfter?: BeforeAfterRow[];
+  verticals?: Vertical[];
+  architecture?: ArchitectureData;
 };
 
 export const caseStudies: CaseStudyData[] = [
@@ -204,15 +236,106 @@ export const caseStudies: CaseStudyData[] = [
     techTags: [
       "Next.js",
       "TypeScript",
-      "PostgreSQL",
+      "Postgres (Neon)",
       "Prisma",
       "LangChain",
-      "Swift",
+      "Expo",
+      "Supabase",
       "Vercel",
     ],
     links: {
       // live: "https://tasmanstarseafood.com.au", // confirm before adding
       github: "https://github.com/Ansh0928",
+    },
+    isActiveBuild: true,
+    problems: [
+      "$26k/yr on disconnected SaaS",
+      "Inventory tracked in spreadsheets",
+      "Wholesale via phone & text",
+      "Paper delivery dockets",
+      "Perishable stock with no live visibility",
+      "Nothing talks to anything",
+    ],
+    beforeAfter: [
+      {
+        before: "Shopify + Fresho ($26k/yr)",
+        after: "Custom platform (owned forever)",
+      },
+      {
+        before: "Inventory in spreadsheets",
+        after: "Live inventory + expiry tracking",
+      },
+      {
+        before: "Wholesale via phone/text",
+        after: "Self-serve wholesale portal",
+      },
+      {
+        before: "Paper delivery dockets",
+        after: "Expo app · photo + signature verify",
+      },
+      {
+        before: "No field rep visibility",
+        after: "Sales rep app + office God's Eye",
+      },
+      {
+        before: "Perishable waste, no alerts",
+        after: "AI flags low stock + near-expiry",
+      },
+    ],
+    verticals: [
+      {
+        icon: "🛒",
+        title: "E-Commerce",
+        stack: "Next.js · Postgres (Neon)",
+        color: "green",
+        features: [
+          "Dynamic pricing automation",
+          "Live inventory + expiry tracking",
+          "Wholesale approval portal",
+          "RBAC (4 roles: super admin / admin / staff / wholesale)",
+          "Staff dashboard + batch delivery runs by area",
+        ],
+      },
+      {
+        icon: "🚛",
+        title: "Transport & Freight",
+        stack: "Expo · Supabase · Next.js",
+        color: "blue",
+        features: [
+          "God's Eye admin oversight",
+          "Live driver tracking",
+          "Mandatory photo + signature verification",
+          "Revenue leak prevention",
+        ],
+      },
+      {
+        icon: "👤",
+        title: "Sales & Field Ops",
+        stack: "Expo · Next.js",
+        color: "purple",
+        features: [
+          "Sales reps lodge orders in-field",
+          "GPS location pinning",
+          "Office sees all reps live",
+          "Full field-to-office control",
+        ],
+      },
+    ],
+    architecture: {
+      inputLabel: "Warehouse Invoices / Emails",
+      inputFlow: "scraped + parsed → Dynamic Pricing Automation",
+      platformTitle: "Master Platform — Live AI Dashboard",
+      platformSub:
+        "Everything connected · Each store owns its view · Warehouse + stores + website in sync",
+      platformStack: "Next.js · Postgres (Neon) · Supabase",
+      aiFeatures: [
+        "Near-expiry flagging",
+        "Stock level alerts",
+        "Dynamic price automation",
+        "Invoice scraping (LangChain)",
+        "Sales + weather forecasting",
+        "What's in · what's out · what's expiring",
+      ],
     },
   },
 ];
@@ -374,23 +497,6 @@ export const certifications: Certification[] = [
   },
   { label: "AWS Cloud", url: "https://aws.amazon.com/certification/" },
   { label: "Data Analytics Python (NPTEL)", url: "https://nptel.ac.in/" },
-];
-
-// ── TECH STACK ───────────────────────────────────────────────────────────────
-export const techStackPrimary = ["Next.js", "TypeScript", "React", "LangChain"];
-export const techStackSecondary = [
-  "PostgreSQL",
-  "Prisma",
-  "Supabase",
-  "Docker",
-  "Ollama",
-  "Swift",
-  "Vue",
-  "Framer Motion",
-  "shadcn/ui",
-  "Vercel",
-  "Git",
-  "Figma",
 ];
 
 // ── BELIEFS ──────────────────────────────────────────────────────────────────
